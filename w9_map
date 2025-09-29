@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Median Internet Speed by Country (May 2024)",
+  "width": 900,
+  "height": 450,
+  "projection": {"type": "equalEarth"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "layer": [
+    {
+      "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "#aaaaaa", "strokeWidth": 0.5}
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.ISO_A2",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internet_speed_by_country_may2024.csv?token=GHSAT0AAAAAADLZLOZXBNW3HR53A2BQYHUC2G2KKLA",
+              "format": {"type": "csv"}
+            },
+            "key": "country_code",
+            "fields": ["country", "median_speed(mbps)"]
+          }
+        },
+        { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "MedianMbps" }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "MedianMbps",
+          "type": "quantitative",
+          "title": "Median speed (Mbps)",
+          "scale": {"scheme": "blues"}
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "MedianMbps", "type": "quantitative", "format": ".2f", "title": "Median (Mbps)"}
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
