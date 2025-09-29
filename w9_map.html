@@ -6,59 +6,65 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  <style>body { margin: 24px; font: 14px/1.4 sans-serif; } #vis { max-width: 1000px; }</style>
+  <style>
+    body { margin: 24px; font: 14px/1.4 sans-serif; }
+    #vis { max-width: 1000px; }
+  </style>
 </head>
 <body>
   <h2>Median Internet Speed by Country — Mobile (May 2024)</h2>
   <div id="vis"></div>
+
   <script>
     const spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Median Internet Speed by Country (May 2024)",
-  "width": 900,
-  "height": 450,
-  "projection": {"type": "equalEarth"},
-  "data": {
-    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-  },
-  "layer": [
-    {
-      "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "#aaaaaa", "strokeWidth": 0.5}
-    },
-    {
-      "transform": [
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Median Internet Speed by Country — Mobile (May 2024)",
+      "width": 900,
+      "height": 450,
+      "projection": {"type": "equalEarth"},
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "layer": [
         {
-          "lookup": "properties.ISO_A2",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internet_speed_by_country_may2024.csv?token=GHSAT0AAAAAADLZLOZXBNW3HR53A2BQYHUC2G2KKLA",
-              "format": {"type": "csv"}
+          "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "#aaaaaa", "strokeWidth": 0.5}
+        },
+        {
+          "transform": [
+            {
+              "lookup": "properties.ISO_A2_EH",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/williii3/FIT3179-Data-Visualisation/main/internet_speed_by_country_may2024.csv",
+                  "format": {"type": "csv"}
+                },
+                "key": "country_code",
+                "fields": ["country", "internet_type", "median_speed(mbps)"]
+              }
             },
-            "key": "country_code",
-            "fields": ["country", "median_speed(mbps)"]
+            { "filter": "datum.internet_type == 'mobile'" },
+            { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "MedianMbps" }
+          ],
+          "mark": {"type": "geoshape"},
+          "encoding": {
+            "color": {
+              "field": "MedianMbps",
+              "type": "quantitative",
+              "title": "Median speed (Mbps)",
+              "scale": {"scheme": "blues"}
+            },
+            "tooltip": [
+              {"field": "properties.NAME", "title": "Country"},
+              {"field": "MedianMbps", "type": "quantitative", "format": ".1f", "title": "Median (Mbps)"}
+            ]
           }
-        },
-        { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "MedianMbps" }
+        }
       ],
-      "mark": {"type": "geoshape"},
-      "encoding": {
-        "color": {
-          "field": "MedianMbps",
-          "type": "quantitative",
-          "title": "Median speed (Mbps)",
-          "scale": {"scheme": "blues"}
-        },
-        "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "MedianMbps", "type": "quantitative", "format": ".2f", "title": "Median (Mbps)"}
-        ]
-      }
-    }
-  ],
-  "config": {"view": {"stroke": null}}
-};
-    vegaEmbed('#vis', spec, { actions: false });
+      "config": {"view": {"stroke": null}}
+    };
+
+    vegaEmbed("#vis", spec, { actions: false });
   </script>
 </body>
 </html>
