@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internet Speed Visualisations</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    :root { --maxw: 1100px; }
+    body { margin: 24px; font: 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#222; }
+    h1 { margin: 0 0 16px; font-size: 26px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; }
+    section { margin: 28px 0 48px; }
+    .vis { max-width: var(--maxw); }
+    .note { color:#666; font-size: 12px; margin-top: 8px; }
+    hr { border: none; border-top: 1px solid #eee; margin: 36px 0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Internet Speed Visualisations</h1>
+
+  <!-- ====== Visual 1: Choropleth (Week 9) ====== -->
+  <section>
+    <h2>Median Internet Speed by Country — Fixed Broadband (May 2024)</h2>
+    <div id="map" class="vis"></div>
+    <p class="note">Data source: fixed broadband median speeds. Countries without data appear in light grey.</p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Mobile vs Fixed Broadband — Median Speed (Mbps)</h2>
+    <div id="scatter" class="vis"></div>
+    <p class="note">Use the slider to set a minimum fixed broadband speed. Filter by continent code.</p>
+  </section>
+</div>
+
+<script>
+  const specMap = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Median Internet Speed by Country — Fixed Broadband (May 2024)",
+    "width": 900,
+    "height": 450,
+    "projection": {"type": "equalEarth"},
+    "data": {
+      "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
+    "layer": [
+      { "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "#aaaaaa", "strokeWidth": 0.5} },
+      {
+        "transform": [
+          {
+            "lookup": "properties.ISO_A2",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed.csv",
+                "format": {"type": "csv"}
+              },
+              "key": "country_code",
+              "fields": ["country", "median_speed(mbps)"]
+            }
+          },
+          { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "MedianMbps" }
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "color": {
+            "field": "MedianMbps",
+            "type": "quantitative",
+            "title": "Median speed (Mbps)",
+            "scale": {"scheme": "blues"}
+          },
+          "tooltip": [
+            {"field": "country", "title": "Country"},
+            {"field": "MedianMbps", "type": "quantitative", "format": ".1f", "title": "Median (Mbps)"}
+          ]
+        }
+      }
+    ],
+    "config": {"view": {"stroke": null}}
+  };
+
+  const specScatter = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 900,
+    "height": 520,
+    "data": { "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/fixed_fixedbroadband.csv" },
+
+    "params": [
+      {
+        "name": "MinBroadband",
+        "value": 0,
+        "bind": {
+          "input": "range",
+          "min": 0, "max": 1000, "step": 5,
+          "name": "Minimum Broadband (Mbps): "
+        }
+      },
+      {
+        "name": "Continent_selection",
+        "bind": {
+          "input": "select",
+          "options": [null, "AF", "AS", "EU", "NA", "OC", "SA"],
+          "labels": ["Show All", "Africa", "Asia", "Europe", "North America", "Oceania", "South America"],
+          "name": "Continent: "
+        }
+      }
+    ],
+
+    "transform": [
+      {
+        "lookup": "country_code",
+        "from": {
+          "data": { "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/fixed_mobile.csv" }, 
+          "key": "country_code",
+          "fields": ["median_speed(mbps)"]
+        },
+        "as": "mobile_speed"
+      },
+      { "calculate": "datum['median_speed(mbps)']", "as": "broadband_speed" },
+      { "filter": "isValid(datum.mobile_speed) && isValid(datum.broadband_speed)" },
+      { "filter": "datum.broadband_speed >= MinBroadband" },
+      { "filter": "Continent_selection == null || datum.continent_code == Continent_selection" }
+    ],
+
+    "mark": {"type": "circle", "opacity": 0.7},
+    "encoding": {
+      "x": {"field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband — Median Speed (Mbps)"},
+      "y": {"field": "mobile_speed", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)"},
+      "size": {
+        "field": "broadband_speed", "type": "quantitative",
+        "title": "Broadband speed (Mbps)", "legend": {"format": ".0f"},
+        "scale": {"range": [20, 600]}
+      },
+      "color": {
+        "field": "continent_code", "type": "nominal", "title": "Continent",
+        "scale": {
+          "domain": ["AF","AS","EU","NA","OC","SA"],
+          "range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]
+        }
+      },
+      "tooltip": [
+        {"field": "country", "title": "Country"},
+        {"field": "country_code", "title": "Code"},
+        {"field": "continent_code", "title": "Continent"},
+        {"field": "broadband_speed", "title": "Fixed Broadband (Mbps)", "type": "quantitative", "format": ".2f"},
+        {"field": "mobile_speed", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".2f"}
+      ]
+    },
+    "config": {"view": {"stroke": null}}
+  };
+
+  // Embed both
+  vegaEmbed("#map", specMap, { actions: false });
+  vegaEmbed("#scatter", specScatter, { actions: false });
+</script>
+</body>
+</html>
