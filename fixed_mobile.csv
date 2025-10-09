@@ -1,0 +1,148 @@
+﻿country,country_code,continent_code,internet_type,median_speed(mbps)
+Qatar,QA,AS,mobile,329.37
+United Arab Emirates,AE,AS,mobile,309.77
+Kuwait,KW,AS,mobile,233.78
+Denmark,DK,EU,mobile,147.33
+Norway,NO,EU,mobile,142.23
+South Korea,KR,AS,mobile,139.98
+Iceland,IS,EU,mobile,139.01
+China,CN,AS,mobile,133.57
+Netherlands,NL,EU,mobile,120.25
+Macau (SAR),MO,AS,mobile,118.91
+United States of America,US,NA,mobile,114.87
+Saudi Arabia,SA,AS,mobile,114.46
+Bahrain,BH,AS,mobile,112.12
+Finland,FI,EU,mobile,109.1
+Brunei,BN,AS,mobile,107.4
+India,IN,AS,mobile,107.37
+Luxembourg,LU,EU,mobile,107.3
+Estonia,EE,EU,mobile,104.08
+Lithuania,LT,EU,mobile,103.93
+Sweden,SE,EU,mobile,102.02
+Singapore,SG,AS,mobile,99.29
+Bulgaria,BG,EU,mobile,97.85
+Croatia,HR,EU,mobile,96.69
+France,FR,EU,mobile,95.8
+Malaysia,MY,AS,mobile,95.66
+Australia,AU,OC,mobile,93.37
+Maldives,MV,AS,mobile,91.23
+Switzerland,CH,EU,mobile,89.85
+Portugal,PT,EU,mobile,88.91
+Austria,AT,EU,mobile,88.28
+Latvia,LV,EU,mobile,86.23
+Canada,CA,NA,mobile,84.91
+North Macedonia,MK,EU,mobile,83.43
+Czechia,CZ,EU,mobile,81.96
+Taiwan,TW,AS,mobile,81.93
+Belgium,BE,EU,mobile,79.82
+Oman,OM,AS,mobile,79.64
+Mauritius,MU,AF,mobile,79.24
+Greece,GR,EU,mobile,77.01
+Uruguay,UY,SA,mobile,75.63
+Slovenia,SI,EU,mobile,71.21
+New Zealand,NZ,OC,mobile,70.34
+Malta,MT,EU,mobile,64.6
+Cyprus,CY,AS,mobile,64.06
+Brazil,BR,SA,mobile,62.95
+Hong Kong (SAR),HK,AS,mobile,61.27
+Romania,RO,EU,mobile,58.73
+Montenegro,ME,EU,mobile,56.88
+Germany,DE,EU,mobile,56.43
+Poland,PL,EU,mobile,55.56
+Slovakia,SK,EU,mobile,54.57
+Hungary,HU,EU,mobile,54.45
+United Kingdom,GB,EU,mobile,53.96
+Italy,IT,EU,mobile,53.43
+Serbia,RS,EU,mobile,52.49
+South Africa,ZA,AF,mobile,52.28
+Vietnam,VN,AS,mobile,52.15
+Suriname,SR,SA,mobile,51.28
+Azerbaijan,AZ,AS,mobile,51.18
+Albania,AL,EU,mobile,50.71
+Spain,ES,EU,mobile,49.77
+Thailand,TH,AS,mobile,48.76
+Zimbabwe,ZW,AF,mobile,45.63
+Kazakhstan,KZ,AS,mobile,45.34
+Japan,JP,AS,mobile,45.17
+Morocco,MA,AF,mobile,43.7
+Israel,IL,AS,mobile,42.33
+Turkey,TR,AS,mobile,40.77
+Georgia,GE,AS,mobile,39.83
+Ireland,IE,EU,mobile,39.79
+Chile,CL,SA,mobile,38.3
+Kosovo,XK,EU,mobile,37.63
+Iran,IR,AS,mobile,37.36
+Kyrgyzstan,KG,AS,mobile,37.21
+Senegal,SN,AF,mobile,36.74
+Togo,TG,AF,mobile,36.36
+Guatemala,GT,NA,mobile,35.75
+Uganda,UG,AF,mobile,34.94
+Botswana,BW,AF,mobile,34.9
+Moldova,MD,EU,mobile,34.47
+Lebanon,LB,AS,mobile,34.13
+Costa Rica,CR,NA,mobile,32.36
+Philippines,PH,AS,mobile,32.12
+Argentina,AR,SA,mobile,31.97
+Ethiopia,ET,AF,mobile,31.48
+Tanzania,TZ,AF,mobile,30.78
+Honduras,HN,NA,mobile,30.45
+Iraq,IQ,AS,mobile,29.85
+Uzbekistan,UZ,AS,mobile,29.5
+Mexico,MX,NA,mobile,29.3
+Trinidad and Tobago,TT,NA,mobile,29.19
+Myanmar (Burma),MM,AS,mobile,29.01
+El Salvador,SV,NA,mobile,28.9
+Kenya,KE,AF,mobile,28.58
+Dominican Republic,DO,NA,mobile,28.56
+Jamaica,JM,NA,mobile,28.47
+Indonesia,ID,AS,mobile,27.99
+Laos,LA,AS,mobile,27.94
+Madagascar,MG,AF,mobile,27.7
+Armenia,AM,AS,mobile,27.57
+Guyana,GY,SA,mobile,27.23
+Cambodia,KH,AS,mobile,26.24
+Jordan,JO,AS,mobile,26.08
+Tunisia,TN,AF,mobile,25.56
+Russia,RU,EU,mobile,25.51
+Ecuador,EC,SA,mobile,25.13
+Egypt,EG,AF,mobile,24.39
+Fiji,FJ,OC,mobile,23.97
+Bangladesh,BD,AS,mobile,23.82
+Namibia,NA,AF,mobile,23.17
+Rwanda,RW,AF,mobile,23.15
+Algeria,DZ,AF,mobile,23.15
+CÃ´te d'Ivoire,CI,AF,mobile,22.56
+Zambia,ZM,AF,mobile,22.27
+Somalia,SO,AF,mobile,22.07
+Mozambique,MZ,AF,mobile,21.57
+Nigeria,NG,AF,mobile,21.16
+Bosnia and Herzegovina,BA,EU,mobile,21
+Ukraine,UA,EU,mobile,20.99
+Papua New Guinea,PG,OC,mobile,20.56
+Malawi,MW,AF,mobile,20.32
+Peru,PE,SA,mobile,19.97
+Panama,PA,NA,mobile,19.17
+Colombia,CO,SA,mobile,18.65
+Pakistan,PK,AS,mobile,18.14
+Paraguay,PY,SA,mobile,18.13
+Nicaragua,NI,NA,mobile,18.07
+Sri Lanka,LK,AS,mobile,17.91
+DR Congo,CD,AF,mobile,17.44
+Angola,AO,AF,mobile,16.23
+Ghana,GH,AF,mobile,15.85
+Libya,LY,AF,mobile,14.86
+Sudan,SD,AF,mobile,14.36
+Cameroon,CM,AF,mobile,13.99
+Mongolia,MN,AS,mobile,13.8
+Syria,SY,AS,mobile,13.76
+Nepal,NP,AS,mobile,12.94
+Venezuela,VE,SA,mobile,12.17
+Belarus,BY,EU,mobile,11.55
+Haiti,HT,NA,mobile,11.25
+Belize,BZ,NA,mobile,10.69
+Bolivia,BO,SA,mobile,10.57
+Tajikistan,TJ,AS,mobile,9.58
+East Timor,TL,AS,mobile,7.36
+Afghanistan,AF,AS,mobile,7.25
+Yemen,YE,AS,mobile,6.53
+Cuba,CU,NA,mobile,3.77

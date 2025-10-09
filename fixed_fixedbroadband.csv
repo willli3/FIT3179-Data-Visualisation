@@ -1,0 +1,182 @@
+﻿country,country_code,continent_code,internet_type,median_speed(mbps)
+Singapore,SG,AS,fixed_broadband,289.98
+Hong Kong (SAR),HK,AS,fixed_broadband,282.48
+Chile,CL,SA,fixed_broadband,274.46
+United Arab Emirates,AE,AS,fixed_broadband,272.9
+Iceland,IS,EU,fixed_broadband,255.69
+United States,US,NA,fixed_broadband,248.27
+France,FR,EU,fixed_broadband,237.06
+Thailand,TH,AS,fixed_broadband,235.86
+China,CN,AS,fixed_broadband,233.38
+Denmark,DK,EU,fixed_broadband,224.31
+Spain,ES,EU,fixed_broadband,218.72
+Romania,RO,EU,fixed_broadband,211.66
+Switzerland,CH,EU,fixed_broadband,203.52
+Israel,IL,AS,fixed_broadband,203.4
+Netherlands,NL,EU,fixed_broadband,197.99
+Japan,JP,AS,fixed_broadband,190.44
+Taiwan,TW,AS,fixed_broadband,190.09
+Canada,CA,NA,fixed_broadband,189.74
+Liechtenstein,LI,EU,fixed_broadband,186.71
+New Zealand,NZ,OC,fixed_broadband,185.55
+Portugal,PT,EU,fixed_broadband,181.2
+Hungary,HU,EU,fixed_broadband,179.88
+Kuwait,KW,AS,fixed_broadband,177.88
+Uruguay,UY,SA,fixed_broadband,172.97
+Andorra,AD,EU,fixed_broadband,172.04
+South Korea,KR,AS,fixed_broadband,169.53
+Qatar,QA,AS,fixed_broadband,169.2
+Brazil,BR,SA,fixed_broadband,166.24
+Macau (SAR),MO,AS,fixed_broadband,160.03
+Poland,PL,EU,fixed_broadband,156.32
+Monaco,MC,EU,fixed_broadband,154.42
+Peru,PE,SA,fixed_broadband,154.24
+Luxembourg,LU,EU,fixed_broadband,152.06
+Panama,PA,NA,fixed_broadband,151.82
+Sweden,SE,EU,fixed_broadband,150.18
+Jordan,JO,AS,fixed_broadband,147.4
+Colombia,CO,SA,fixed_broadband,143.68
+Norway,NO,EU,fixed_broadband,136.07
+Malaysia,MY,AS,fixed_broadband,134.44
+Vietnam,VN,AS,fixed_broadband,129.01
+Lithuania,LT,EU,fixed_broadband,128.48
+Moldova,MD,EU,fixed_broadband,128.39
+Ireland,IE,EU,fixed_broadband,122.42
+Trinidad and Tobago,TT,NA,fixed_broadband,122.35
+Finland,FI,EU,fixed_broadband,117.46
+Saudi Arabia,SA,AS,fixed_broadband,116.66
+Malta,MT,EU,fixed_broadband,115.6
+Saint Lucia,LC,NA,fixed_broadband,109.49
+United Kingdom,GB,EU,fixed_broadband,107.48
+Barbados,BB,NA,fixed_broadband,100.94
+Austria,AT,EU,fixed_broadband,98.89
+Belgium,BE,EU,fixed_broadband,98.1
+San Marino,SM,EU,fixed_broadband,96.99
+Saint Vincent and the Grenadines,VC,NA,fixed_broadband,94.9
+Costa Rica,CR,NA,fixed_broadband,94.58
+Philippines,PH,AS,fixed_broadband,94.5
+Grenada,GD,NA,fixed_broadband,93.79
+Ecuador,EC,SA,fixed_broadband,93.77
+Slovenia,SI,EU,fixed_broadband,93.47
+Latvia,LV,EU,fixed_broadband,93.4
+Dominica,DM,NA,fixed_broadband,92.99
+Paraguay,PY,SA,fixed_broadband,92.78
+Germany,DE,EU,fixed_broadband,90.44
+Russia,RU,EU,fixed_broadband,87.71
+Bahrain,BH,AS,fixed_broadband,87.13
+Argentina,AR,SA,fixed_broadband,86.2
+Estonia,EE,EU,fixed_broadband,84.65
+Slovakia,SK,EU,fixed_broadband,83.81
+Cyprus,CY,AS,fixed_broadband,83.73
+Italy,IT,EU,fixed_broadband,82.5
+Ukraine,UA,EU,fixed_broadband,81.18
+Jamaica,JM,NA,fixed_broadband,80.91
+Bulgaria,BG,EU,fixed_broadband,80.5
+Guyana,GY,SA,fixed_broadband,79.72
+Serbia,RS,EU,fixed_broadband,79.17
+Brunei,BN,AS,fixed_broadband,78.07
+Montenegro,ME,EU,fixed_broadband,77.78
+Nepal,NP,AS,fixed_broadband,75.86
+Egypt,EG,AF,fixed_broadband,75.44
+Mongolia,MN,AS,fixed_broadband,73.33
+Oman,OM,AS,fixed_broadband,73.05
+Palestine,PS,AS,fixed_broadband,71.05
+The Bahamas,BS,NA,fixed_broadband,70.76
+Mexico,MX,NA,fixed_broadband,70.6
+Kosovo,XK,EU,fixed_broadband,70.43
+Australia,AU,OC,fixed_broadband,69.36
+Czechia,CZ,EU,fixed_broadband,69.18
+Saint Kitts and Nevis,KN,NA,fixed_broadband,68.07
+Kyrgyzstan,KG,AS,fixed_broadband,65.26
+Uzbekistan,UZ,AS,fixed_broadband,64.52
+Croatia,HR,EU,fixed_broadband,64.46
+India,IN,AS,fixed_broadband,64.22
+Albania,AL,EU,fixed_broadband,64.18
+CÃ´te d'Ivoire,CI,AF,fixed_broadband,63.79
+Belarus,BY,EU,fixed_broadband,63.06
+Armenia,AM,AS,fixed_broadband,56.77
+Nicaragua,NI,NA,fixed_broadband,56.06
+Kazakhstan,KZ,AS,fixed_broadband,55.13
+Venezuela,VE,SA,fixed_broadband,53.9
+Guatemala,GT,NA,fixed_broadband,53.2
+El Salvador,SV,NA,fixed_broadband,52.84
+Mauritius,MU,AF,fixed_broadband,52.01
+Seychelles,SC,AF,fixed_broadband,49.25
+Greece,GR,EU,fixed_broadband,49.23
+South Africa,ZA,AF,fixed_broadband,48.28
+Honduras,HN,NA,fixed_broadband,48.06
+Belize,BZ,NA,fixed_broadband,47.95
+Bangladesh,BD,AS,fixed_broadband,46.96
+Cambodia,KH,AS,fixed_broadband,46.31
+Congo,CG,AF,fixed_broadband,44.92
+Turkey,TR,AS,fixed_broadband,44.21
+Antigua and Barbuda,AG,NA,fixed_broadband,44.08
+Madagascar,MG,AF,fixed_broadband,43.88
+Burkina Faso,BF,AF,fixed_broadband,43.28
+North Macedonia,MK,EU,fixed_broadband,43.24
+DR Congo,CD,AF,fixed_broadband,42.93
+Gabon,GA,AF,fixed_broadband,39.95
+Azerbaijan,AZ,AS,fixed_broadband,39.48
+Ghana,GH,AF,fixed_broadband,38.91
+Laos,LA,AS,fixed_broadband,38.16
+Rwanda,RW,AF,fixed_broadband,36.87
+Dominican Republic,DO,NA,fixed_broadband,34.21
+Iraq,IQ,AS,fixed_broadband,33.99
+Haiti,HT,NA,fixed_broadband,33.58
+Bolivia,BO,SA,fixed_broadband,32.78
+Bosnia and Herzegovina,BA,EU,fixed_broadband,31.62
+Indonesia,ID,AS,fixed_broadband,31.2
+Morocco,MA,AF,fixed_broadband,30.91
+Tajikistan,TJ,AS,fixed_broadband,29.68
+Togo,TG,AF,fixed_broadband,28.87
+Western Sahara,EH,AF,fixed_broadband,26.99
+Georgia,GE,AS,fixed_broadband,26.71
+Lesotho,LS,AF,fixed_broadband,26.23
+Benin,BJ,AF,fixed_broadband,25.78
+Senegal,SN,AF,fixed_broadband,25.6
+Mauritania,MR,AF,fixed_broadband,25.47
+Mali,ML,AF,fixed_broadband,24.58
+Nigeria,NG,AF,fixed_broadband,24.3
+Malawi,MW,AF,fixed_broadband,22.62
+Sri Lanka,LK,AS,fixed_broadband,22.37
+Zambia,ZM,AF,fixed_broadband,21.35
+Myanmar (Burma),MM,AS,fixed_broadband,20.9
+Sierra Leone,SL,AF,fixed_broadband,20.75
+Swaziland,SZ,AF,fixed_broadband,19.62
+Angola,AO,AF,fixed_broadband,19.38
+Tanzania,TZ,AF,fixed_broadband,19.31
+Fiji,FJ,OC,fixed_broadband,19.11
+Djibouti,DJ,AF,fixed_broadband,17.58
+Lebanon,LB,AS,fixed_broadband,16.22
+Mozambique,MZ,AF,fixed_broadband,16.19
+Somalia,SO,AF,fixed_broadband,16.18
+Uganda,UG,AF,fixed_broadband,15.58
+Papua New Guinea,PG,OC,fixed_broadband,15.31
+Iran,IR,AS,fixed_broadband,15.28
+Pakistan,PK,AS,fixed_broadband,15.18
+Algeria,DZ,AF,fixed_broadband,14.73
+Vanuatu,VU,OC,fixed_broadband,14.66
+Zimbabwe,ZW,AF,fixed_broadband,14.64
+Namibia,NA,AF,fixed_broadband,13.78
+Suriname,SR,SA,fixed_broadband,13.64
+Maldives,MV,AS,fixed_broadband,13.03
+Sudan,SD,AF,fixed_broadband,12.9
+Kenya,KE,AF,fixed_broadband,12.58
+Bhutan,BT,AS,fixed_broadband,12.37
+Cape Verde,CV,AF,fixed_broadband,10.94
+Cameroon,CM,AF,fixed_broadband,10.48
+Tunisia,TN,AF,fixed_broadband,10.27
+Libya,LY,AF,fixed_broadband,10.22
+Guinea,GN,AF,fixed_broadband,9.67
+Ethiopia,ET,AF,fixed_broadband,8.92
+Botswana,BW,AF,fixed_broadband,8.36
+East Timor,TL,AS,fixed_broadband,8.21
+Liberia,LR,AF,fixed_broadband,8.12
+The Gambia,GM,AF,fixed_broadband,7.44
+Yemen,YE,AS,fixed_broadband,7.21
+Niger,NE,AF,fixed_broadband,6.88
+Turkmenistan,TM,AS,fixed_broadband,6.75
+Burundi,BI,AF,fixed_broadband,6.2
+Syria,SY,AS,fixed_broadband,4.6
+Afghanistan,AF,AS,fixed_broadband,3.5
+Cuba,CU,NA,fixed_broadband,2.69
