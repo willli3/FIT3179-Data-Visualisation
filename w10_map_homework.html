@@ -14,7 +14,6 @@
     .wrap { max-width: var(--maxw); margin: 0 auto; }
     section { margin: 28px 0 48px; }
     .vis { max-width: var(--maxw); }
-    .note { color:#666; font-size: 12px; margin-top: 8px; }
     hr { border: none; border-top: 1px solid #eee; margin: 36px 0; }
   </style>
 </head>
@@ -83,9 +82,13 @@
 
   const specScatter = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Mobile vs Fixed Broadband — Median Speed (Mbps)",
     "width": 900,
     "height": 520,
-    "data": { "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/fixed_fixedbroadband.csv" },
+
+    "data": {
+      "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_fixedbroadband.csv"
+    },
 
     "params": [
       {
@@ -112,43 +115,79 @@
       {
         "lookup": "country_code",
         "from": {
-          "data": { "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/fixed_mobile.csv" }, 
+          "data": {
+            "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
+          },
           "key": "country_code",
           "fields": ["median_speed(mbps)"]
         },
         "as": "mobile_speed"
       },
       { "calculate": "datum['median_speed(mbps)']", "as": "broadband_speed" },
+      { "calculate": "toNumber(datum.mobile_speed)", "as": "mobile_speed" },
       { "filter": "isValid(datum.mobile_speed) && isValid(datum.broadband_speed)" },
       { "filter": "datum.broadband_speed >= MinBroadband" },
       { "filter": "Continent_selection == null || datum.continent_code == Continent_selection" }
     ],
 
-    "mark": {"type": "circle", "opacity": 0.7},
-    "encoding": {
-      "x": {"field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband — Median Speed (Mbps)"},
-      "y": {"field": "mobile_speed", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)"},
-      "size": {
-        "field": "broadband_speed", "type": "quantitative",
-        "title": "Broadband speed (Mbps)", "legend": {"format": ".0f"},
-        "scale": {"range": [20, 600]}
-      },
-      "color": {
-        "field": "continent_code", "type": "nominal", "title": "Continent",
-        "scale": {
-          "domain": ["AF","AS","EU","NA","OC","SA"],
-          "range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]
+    "layer": [
+      {
+        "mark": { "type": "circle", "opacity": 0.7 },
+        "encoding": {
+          "x": { "field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband — Median Speed (Mbps)" },
+          "y": { "field": "mobile_speed", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)" },
+          "size": {
+            "field": "broadband_speed",
+            "type": "quantitative",
+            "title": "Broadband speed (Mbps)",
+            "legend": { "format": ".0f" },
+            "scale": { "range": [20, 600] }
+          },
+          "color": {
+            "field": "continent_code",
+            "type": "nominal",
+            "title": "Continent",
+            "scale": {
+              "domain": ["AF", "AS", "EU", "NA", "OC", "SA"],
+              "range": ["#a6cee3", "#377eb8", "#ff7f00", "#e41a1c", "#1b9e77", "#984ea3"]
+            }
+          },
+          "tooltip": [
+            { "field": "country", "title": "Country" },
+            { "field": "country_code", "title": "Code" },
+            { "field": "continent_code", "title": "Continent" },
+            { "field": "broadband_speed", "title": "Fixed Broadband (Mbps)", "type": "quantitative", "format": ".2f" },
+            { "field": "mobile_speed", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".2f" }
+          ]
         }
       },
-      "tooltip": [
-        {"field": "country", "title": "Country"},
-        {"field": "country_code", "title": "Code"},
-        {"field": "continent_code", "title": "Continent"},
-        {"field": "broadband_speed", "title": "Fixed Broadband (Mbps)", "type": "quantitative", "format": ".2f"},
-        {"field": "mobile_speed", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".2f"}
-      ]
-    },
-    "config": {"view": {"stroke": null}}
+
+      {
+        "transform": [
+          { "filter": "indexof(['Norway','Denmark','Kuwait','Qatar','United Arab Emirates'], datum.country) >= 0" }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -12,
+          "dy": 0,
+          "font": "system-ui, Segoe UI, Roboto, Arial, sans-serif",
+          "fontSize": 14,
+          "fontStyle": "italic",
+          "stroke": "black",
+          "strokeWidth": 2,
+          "opacity": 0.95
+        },
+        "encoding": {
+          "x": { "field": "broadband_speed", "type": "quantitative" },
+          "y": { "field": "mobile_speed", "type": "quantitative" },
+          "text": { "field": "country" }
+        }
+      }
+    ],
+
+    "config": { "view": { "stroke": null } }
   };
 
   vegaEmbed("#map", specMap, { actions: false });
