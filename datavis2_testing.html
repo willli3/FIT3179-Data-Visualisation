@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Internet Speed Visualisations</title>
+  <title>How fast is the world?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Vega libs -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -12,39 +12,58 @@
     :root { --maxw: 1100px; }
     body { margin: 24px; font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#222; }
     .wrap { max-width: var(--maxw); margin: 0 auto; }
-    h1 { margin: 0 0 12px; font-size: 26px; }
+    h1 { margin: 0 0 12px; font-size: 28px; text-align: center; }  /* centered main title */
     h2 { margin: 28px 0 10px; font-size: 18px; }
     .vis { max-width: 100%; }
     .twocol { display: flex; gap: 20px; flex-wrap: wrap; }
     .twocol > .col { flex: 1 1 520px; min-width: 320px; }
+    .caption { margin: 8px 0 24px; }
+    .caption h3 { margin: 12px 0 6px; font-size: 16px; font-weight: 700; }
+    .caption p { margin: 0; color: #444; }
     hr { border: none; border-top: 1px solid #eee; margin: 28px 0; }
   </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Internet Speed Visualisations</h1>
+  <h1>How fast is the world?</h1>
 
   <!-- 1) Choropleth -->
-  <h2>Median Internet Speed by Country — Fixed Broadband (May 2024)</h2>
+  <h2>Median Internet Speed by Country — Fixed Broadband (2024)</h2>
   <div id="map" class="vis"></div>
+  <div class="caption">
+    <h3>header or title for broadband speed here</h3>
+    <p>write text for broadband speed here</p>
+  </div>
 
   <hr />
 
   <!-- 2) Scatter: Mobile vs Population (with slider + continent filter) -->
   <h2>Mobile Median Speed (Mbps) vs Population (2024)</h2>
   <div id="scatter" class="vis"></div>
+  <div class="caption">
+    <h3>header or title for mobile speed here</h3>
+    <p>write text for mobile speed here</p>
+  </div>
 
   <hr />
 
   <!-- 3 & 4) Side-by-side bar charts -->
   <div class="twocol">
     <div class="col">
-      <h2>Fixed Broadband Speeds (Median Mbps) — incl. Australia</h2>
+      <h2>Fixed Broadband Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-fixed" class="vis"></div>
+      <div class="caption">
+        <h3>header or title for top 5 broadband speeds in comparison to australia</h3>
+        <p>write text for top 5 and comparison here</p>
+      </div>
     </div>
     <div class="col">
-      <h2>Mobile Speeds (Median Mbps) — incl. Australia</h2>
+      <h2>Mobile Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-mobile" class="vis"></div>
+      <div class="caption">
+        <h3>header or title for top 5 mobile speeds in comparison to australia</h3>
+        <p>write text for top 5 and comparison here</p>
+      </div>
     </div>
   </div>
 </div>
@@ -102,11 +121,9 @@ const specScatter = {
   "title": "Mobile Median Speed (Mbps) vs Population (2024)",
   "width": 900,
   "height": 520,
-
   "data": {
-    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"  // ensure this path exists
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"
   },
-
   "params": [
     {
       "name": "MinMobile",
@@ -129,7 +146,6 @@ const specScatter = {
       }
     }
   ],
-
   "transform": [
     {
       "lookup": "Country",
@@ -142,23 +158,15 @@ const specScatter = {
       },
       "as": ["mobile_speed", "continent_code", "country_code"]
     },
-
     { "calculate": "toNumber(datum['Population 2024'])", "as": "population_2024" },
     { "calculate": "toNumber(datum.mobile_speed)", "as": "mobile_speed_num" },
-
     { "filter": "isValid(datum.population_2024) && isValid(datum.mobile_speed_num)" },
     { "filter": "datum.mobile_speed_num >= MinMobile" },
     { "filter": "Continent_selection == null || datum.continent_code == Continent_selection" }
   ],
-
   "mark": { "type": "circle", "opacity": 0.75 },
-
   "encoding": {
-    "x": {
-      "field": "mobile_speed_num",
-      "type": "quantitative",
-      "title": "Mobile — Median Speed (Mbps)"
-    },
+    "x": { "field": "mobile_speed_num", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)" },
     "y": {
       "field": "population_2024",
       "type": "quantitative",
@@ -168,9 +176,7 @@ const specScatter = {
     },
     "size": { "value": 140 },
     "color": {
-      "field": "continent_code",
-      "type": "nominal",
-      "title": "Continent",
+      "field": "continent_code", "type": "nominal", "title": "Continent",
       "scale": {
         "domain": ["AF","AS","EU","NA","OC","SA"],
         "range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]
@@ -184,7 +190,6 @@ const specScatter = {
       { "field": "mobile_speed_num", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".1f" }
     ]
   },
-
   "config": { "view": { "stroke": null } }
 };
 
@@ -198,27 +203,15 @@ const specBarFixed = {
     "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_fixedbroadband.csv"
   },
   "transform": [
-    {
-      "filter": "indexof(['Singapore','Hong Kong (SAR)','Chile','United Arab Emirates','Iceland','Australia'], datum.country) >= 0"
-    },
+    { "filter": "indexof(['Singapore','Hong Kong (SAR)','Chile','United Arab Emirates','Iceland','Australia'], datum.country) >= 0" },
     { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "broadband_speed" }
   ],
   "layer": [
     {
       "mark": { "type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3 },
       "encoding": {
-        "x": {
-          "field": "country",
-          "type": "nominal",
-          "sort": "-y",
-          "title": null,
-          "axis": { "labelAngle": 0 }
-        },
-        "y": {
-          "field": "broadband_speed",
-          "type": "quantitative",
-          "title": "Fixed Broadband — Median Speed (Mbps)"
-        },
+        "x": { "field": "country", "type": "nominal", "sort": "-y", "title": null, "axis": { "labelAngle": 0 } },
+        "y": { "field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband — Median Speed (Mbps)" },
         "color": { "value": "#377eb8" },
         "tooltip": [
           { "field": "country", "title": "Country" },
@@ -235,10 +228,7 @@ const specBarFixed = {
       }
     }
   ],
-  "config": {
-    "view": { "stroke": null },
-    "axis": { "labelFontSize": 12, "titleFontSize": 12 }
-  }
+  "config": { "view": { "stroke": null }, "axis": { "labelFontSize": 12, "titleFontSize": 12 } }
 };
 
 /* ---------- Spec 4: Bar — Mobile incl. Australia ---------- */
@@ -251,27 +241,15 @@ const specBarMobile = {
     "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
   },
   "transform": [
-    {
-      "filter": "indexof(['Qatar','United Arab Emirates','Kuwait','Denmark','Norway','Australia'], datum.country) >= 0"
-    },
+    { "filter": "indexof(['Qatar','United Arab Emirates','Kuwait','Denmark','Norway','Australia'], datum.country) >= 0" },
     { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "mobile_speed" }
   ],
   "layer": [
     {
       "mark": { "type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3 },
       "encoding": {
-        "x": {
-          "field": "country",
-          "type": "nominal",
-          "sort": "-y",
-          "title": null,
-          "axis": { "labelAngle": 0 }
-        },
-        "y": {
-          "field": "mobile_speed",
-          "type": "quantitative",
-          "title": "Mobile — Median Speed (Mbps)"
-        },
+        "x": { "field": "country", "type": "nominal", "sort": "-y", "title": null, "axis": { "labelAngle": 0 } },
+        "y": { "field": "mobile_speed", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)" },
         "color": { "value": "#ff7f00" },
         "tooltip": [
           { "field": "country", "title": "Country" },
@@ -288,10 +266,7 @@ const specBarMobile = {
       }
     }
   ],
-  "config": {
-    "view": { "stroke": null },
-    "axis": { "labelFontSize": 12, "titleFontSize": 12 }
-  }
+  "config": { "view": { "stroke": null }, "axis": { "labelFontSize": 12, "titleFontSize": 12 } }
 };
 
 /* ---------- Embed all ---------- */
