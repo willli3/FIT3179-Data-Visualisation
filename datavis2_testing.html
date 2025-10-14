@@ -20,9 +20,7 @@
     .caption p { margin: 0; color: #444; }
     hr { border: none; border-top: 1px solid #eee; margin: 28px 0; }
 
-    /* New grid for the bar charts:
-       Row 1: [Blue chart | Blue text]
-       Row 2: [Orange text | Orange chart] */
+    /* Bar charts grid */
     .grid-bars {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -48,7 +46,7 @@
 
   <hr />
 
-  <!-- 2) Scatter: Mobile vs Population (with slider + continent filter) -->
+  <!-- 2) Scatter: Mobile vs Population -->
   <h2>Mobile Median Speed (Mbps) vs Population (2024)</h2>
   <div id="scatter" class="vis"></div>
   <div class="caption">
@@ -60,29 +58,35 @@
 
   <!-- 3 & 4) Bars in requested layout -->
   <div class="grid-bars">
-    <!-- Row 1, Col 1: Blue chart -->
     <div>
       <h2>Fixed Broadband Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-fixed" class="vis"></div>
     </div>
 
-    <!-- Row 1, Col 2: Blue text -->
     <div class="caption">
       <h3>header or title for top 5 broadband speeds in comparison to australia</h3>
       <p>write text for top 5 and comparison here</p>
     </div>
 
-    <!-- Row 2, Col 1: Orange text -->
     <div class="caption">
       <h3>header or title for top 5 mobile speeds in comparison to australia</h3>
       <p>write text for top 5 and comparison here</p>
     </div>
 
-    <!-- Row 2, Col 2: Orange chart -->
     <div>
       <h2>Mobile Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-mobile" class="vis"></div>
     </div>
+  </div>
+
+  <hr />
+
+  <!-- 5) Area chart (NEW) -->
+  <h2>Electricity Cost (USD per kWh) — 2024</h2>
+  <div id="area" class="vis"></div>
+  <div class="caption">
+    <h3>header or title for electricity costs here</h3>
+    <p>write text for electricity cost area chart here</p>
   </div>
 </div>
 
@@ -133,7 +137,7 @@ const specMap = {
   "config": {"view": {"stroke": null}}
 };
 
-/* ---------- Spec 2: Scatter (Mobile vs Population with controls) ---------- */
+/* ---------- Spec 2: Scatter (Mobile vs Population) ---------- */
 const specScatter = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Mobile Median Speed (Mbps) vs Population (2024)",
@@ -287,11 +291,78 @@ const specBarMobile = {
   "config": { "view": { "stroke": null }, "axis": { "labelFontSize": 12, "titleFontSize": 12 } }
 };
 
+/* ---------- Spec 5: Area — Electricity cost (NEW) ---------- */
+const specArea = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Electricity Cost (USD per kWh) — 2024",
+  "width": 900,
+  "height": 320,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/electricity_cost_kwh.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5, "max": 145, "step": 1,
+        "name": "Slide to increase the amount of countries: "
+      }
+    }
+  ],
+  "transform": [
+    { "calculate": "toNumber(datum.ElectricityCostUSDPerkWh_2024)", "as": "cost" },
+    { "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "cost", "order": "descending"}] },
+    { "filter": "datum.rank <= TopN" },
+    { "sort": [{"field": "cost", "order": "descending"}] }
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": {"field": "cost", "order": "descending"},
+      "axis": {"labelAngle": -45, "title": null}
+    },
+    "y": {
+      "field": "cost",
+      "type": "quantitative",
+      "title": "USD per kWh (2024)",
+      "axis": {"format": ".3f"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "line": {"color": "#1f77b4", "strokeWidth": 2},
+        "color": {"value": "#1f77b4"},
+        "opacity": 0.35
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "opacity": 0, "size": 120},
+      "encoding": {
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "rank", "type": "quantitative", "title": "Ranking", "format": ".0f"},
+          {"field": "cost", "type": "quantitative", "title": "USD per kWh", "format": ".3f"}
+        ]
+      }
+    }
+  ],
+  "config": { "view": { "stroke": null } }
+};
+
 /* ---------- Embed all ---------- */
 vegaEmbed("#map", specMap, { actions: false });
 vegaEmbed("#scatter", specScatter, { actions: false });
 vegaEmbed("#bar-fixed", specBarFixed, { actions: false });
 vegaEmbed("#bar-mobile", specBarMobile, { actions: false });
+vegaEmbed("#area", specArea, { actions: false });
 </script>
 </body>
 </html>
