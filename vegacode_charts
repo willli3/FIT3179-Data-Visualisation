@@ -207,3 +207,77 @@ mobile:
 }
 
 
+area map for electricity usage per kwh:
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Electricity Cost (USD per kWh) — 2024",
+  "width": 900,
+  "height": 320,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/electricity_cost_kwh.csv",
+    "format": {"type": "csv"}
+  },
+
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5, "max": 145, "step": 1,
+        "name": "Slide to increase the amount of countries: "
+      }
+    }
+  ],
+
+  "transform": [
+    { "calculate": "toNumber(datum.ElectricityCostUSDPerkWh_2024)", "as": "cost" },
+    { "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "cost", "order": "descending"}] },
+    { "filter": "datum.rank <= TopN" },
+    { "sort": [{"field": "cost", "order": "descending"}] }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": {"field": "cost", "order": "descending"},
+      "axis": {"labelAngle": -45, "title": null}
+    },
+    "y": {
+      "field": "cost",
+      "type": "quantitative",
+      "title": "USD per kWh (2024)",
+      "axis": {"format": ".3f"}
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "line": {"color": "#1f77b4", "strokeWidth": 2},
+        "color": {"value": "#1f77b4"},
+        "opacity": 0.35
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "opacity": 0, "size": 120},
+      "encoding": {
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "rank", "type": "quantitative", "title": "Ranking", "format": ".0f"},
+          {"field": "cost", "type": "quantitative", "title": "USD per kWh", "format": ".3f"}
+        ]
+      }
+    }
+  ],
+
+  "config": { "view": { "stroke": null } }
+}
+
