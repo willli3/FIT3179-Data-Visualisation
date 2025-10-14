@@ -12,15 +12,26 @@
     :root { --maxw: 1100px; }
     body { margin: 24px; font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#222; }
     .wrap { max-width: var(--maxw); margin: 0 auto; }
-    h1 { margin: 0 0 12px; font-size: 28px; text-align: center; }  /* centered main title */
+    h1 { margin: 0 0 12px; font-size: 28px; text-align: center; }
     h2 { margin: 28px 0 10px; font-size: 18px; }
     .vis { max-width: 100%; }
-    .twocol { display: flex; gap: 20px; flex-wrap: wrap; }
-    .twocol > .col { flex: 1 1 520px; min-width: 320px; }
     .caption { margin: 8px 0 24px; }
     .caption h3 { margin: 12px 0 6px; font-size: 16px; font-weight: 700; }
     .caption p { margin: 0; color: #444; }
     hr { border: none; border-top: 1px solid #eee; margin: 28px 0; }
+
+    /* New grid for the bar charts:
+       Row 1: [Blue chart | Blue text]
+       Row 2: [Orange text | Orange chart] */
+    .grid-bars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .grid-bars { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -47,23 +58,30 @@
 
   <hr />
 
-  <!-- 3 & 4) Side-by-side bar charts -->
-  <div class="twocol">
-    <div class="col">
+  <!-- 3 & 4) Bars in requested layout -->
+  <div class="grid-bars">
+    <!-- Row 1, Col 1: Blue chart -->
+    <div>
       <h2>Fixed Broadband Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-fixed" class="vis"></div>
-      <div class="caption">
-        <h3>header or title for top 5 broadband speeds in comparison to australia</h3>
-        <p>write text for top 5 and comparison here</p>
-      </div>
     </div>
-    <div class="col">
+
+    <!-- Row 1, Col 2: Blue text -->
+    <div class="caption">
+      <h3>header or title for top 5 broadband speeds in comparison to australia</h3>
+      <p>write text for top 5 and comparison here</p>
+    </div>
+
+    <!-- Row 2, Col 1: Orange text -->
+    <div class="caption">
+      <h3>header or title for top 5 mobile speeds in comparison to australia</h3>
+      <p>write text for top 5 and comparison here</p>
+    </div>
+
+    <!-- Row 2, Col 2: Orange chart -->
+    <div>
       <h2>Mobile Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-mobile" class="vis"></div>
-      <div class="caption">
-        <h3>header or title for top 5 mobile speeds in comparison to australia</h3>
-        <p>write text for top 5 and comparison here</p>
-      </div>
     </div>
   </div>
 </div>
