@@ -14,10 +14,23 @@
     .wrap { max-width: var(--maxw); margin: 0 auto; }
     h1 { margin: 0 0 12px; font-size: 28px; text-align: center; }
     h2 { margin: 28px 0 10px; font-size: 18px; }
-    .vis { max-width: 100%; }
-    .caption { margin: 8px 0 24px; }
+
+    /* Center every Vega/Vega-Lite chart */
+    .vis {
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .vega-embed { margin: 0 auto !important; }
+
+    /* Center captions under charts */
+    .caption {
+      max-width: 900px;
+      margin: 8px auto 24px;
+    }
     .caption h3 { margin: 12px 0 6px; font-size: 16px; font-weight: 700; }
     .caption p { margin: 0; color: #444; }
+
     hr { border: none; border-top: 1px solid #eee; margin: 28px 0; }
 
     /* Bar charts grid */
