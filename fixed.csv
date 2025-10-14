@@ -4,7 +4,7 @@ Hong Kong (SAR),HK,AS,fixed_broadband,282.48
 Chile,CL,SA,fixed_broadband,274.46
 United Arab Emirates,AE,AS,fixed_broadband,272.9
 Iceland,IS,EU,fixed_broadband,255.69
-United States,US,NA,fixed_broadband,248.27
+United States of America,US,NA,fixed_broadband,248.27
 France,FR,EU,fixed_broadband,237.06
 Thailand,TH,AS,fixed_broadband,235.86
 China,CN,AS,fixed_broadband,233.38
@@ -180,3 +180,4 @@ Burundi,BI,AF,fixed_broadband,6.2
 Syria,SY,AS,fixed_broadband,4.6
 Afghanistan,AF,AS,fixed_broadband,3.5
 Cuba,CU,NA,fixed_broadband,2.69
+
