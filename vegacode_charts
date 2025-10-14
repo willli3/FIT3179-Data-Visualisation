@@ -1,0 +1,209 @@
+Mobile speed with population bubble chart
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Mobile Median Speed (Mbps) vs Population (2024)",
+  "width": 900,
+  "height": 520,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/population2024.csv" 
+  },
+
+  "params": [
+    {
+      "name": "MinMobile",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 350,              
+        "step": 5,
+        "name": "Minimum Mobile Speed (Mbps): "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "AF", "AS", "EU", "NA", "OC", "SA"],
+        "labels": ["Show All", "Africa", "Asia", "Europe", "North America", "Oceania", "South America"],
+        "name": "Continent: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "lookup": "Country",  
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
+        },
+        "key": "country",
+        "fields": ["median_speed(mbps)", "continent_code", "country_code"]
+      },
+      "as": ["mobile_speed", "continent_code", "country_code"]
+    },
+
+    { "calculate": "toNumber(datum['Population 2024'])", "as": "population_2024" },
+    { "calculate": "toNumber(datum.mobile_speed)", "as": "mobile_speed_num" },
+
+    { "filter": "isValid(datum.population_2024) && isValid(datum.mobile_speed_num)" },
+    { "filter": "datum.mobile_speed_num >= MinMobile" },  
+    { "filter": "Continent_selection == null || datum.continent_code == Continent_selection" }
+  ],
+
+  "mark": { "type": "circle", "opacity": 0.75 },
+
+  "encoding": {
+    "x": {
+      "field": "mobile_speed_num",
+      "type": "quantitative",
+      "title": "Mobile — Median Speed (Mbps)"
+    },
+    "y": {
+      "field": "population_2024",
+      "type": "quantitative",
+      "title": "Population (2024)",
+      "scale": { "type": "log", "nice": true },
+      "axis": { "format": "s", "tickCount": 7 }
+    },
+    "size": { "value": 140 },
+    "color": {
+      "field": "continent_code",
+      "type": "nominal",
+      "title": "Continent",
+      "scale": {
+        "domain": ["AF","AS","EU","NA","OC","SA"],
+        "range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]
+      }
+    },
+    "tooltip": [
+      { "field": "Country", "title": "Country" },
+      { "field": "country_code", "title": "Code" },
+      { "field": "continent_code", "title": "Continent" },
+      { "field": "population_2024", "title": "Population (2024)", "type": "quantitative", "format": ",.0f" },
+      { "field": "mobile_speed_num", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".1f" }
+    ]
+  },
+
+  "config": { "view": { "stroke": null } }
+}
+
+
+
+bar charts for mobile and boradband speed against population top 5 in comparison to australia
+
+broadband:
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Fixed Broadband Speeds (Median Mbps) in comparison to Australia",
+  "width": 720,
+  "height": 360,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_fixedbroadband.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Singapore','Hong Kong (SAR)','Chile','United Arab Emirates','Iceland','Australia'], datum.country) >= 0"
+    },
+    { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "broadband_speed" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3 },
+      "encoding": {
+        "x": {
+          "field": "country",
+          "type": "nominal",
+          "sort": "-y",
+          "title": null,
+          "axis": { "labelAngle": 0 }
+        },
+        "y": {
+          "field": "broadband_speed",
+          "type": "quantitative",
+          "title": "Fixed Broadband — Median Speed (Mbps)"
+        },
+        "color": { "value": "#377eb8" },
+        "tooltip": [
+          { "field": "country", "title": "Country" },
+          { "field": "broadband_speed", "title": "Median Speed (Mbps)", "type": "quantitative", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "baseline": "bottom", "dy": -3, "fontWeight": "600" },
+      "encoding": {
+        "x": { "field": "country", "type": "nominal", "sort": "-y" },
+        "y": { "field": "broadband_speed", "type": "quantitative" },
+        "text": { "field": "broadband_speed", "type": "quantitative", "format": ".1f" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "labelFontSize": 12, "titleFontSize": 12 }
+  }
+}
+
+mobile:
+
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Mobile Speeds (Median Mbps) in comparison to Australia",
+  "width": 720,
+  "height": 360,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Qatar','United Arab Emirates','Kuwait','Denmark','Norway','Australia'], datum.country) >= 0"
+    },
+    { "calculate": "toNumber(datum['median_speed(mbps)'])", "as": "mobile_speed" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3 },
+      "encoding": {
+        "x": {
+          "field": "country",
+          "type": "nominal",
+          "sort": "-y",
+          "title": null,
+          "axis": { "labelAngle": 0 }
+        },
+        "y": {
+          "field": "mobile_speed",
+          "type": "quantitative",
+          "title": "Mobile — Median Speed (Mbps)"
+        },
+        "color": { "value": "#ff7f00" },
+        "tooltip": [
+          { "field": "country", "title": "Country" },
+          { "field": "mobile_speed", "title": "Median Speed (Mbps)", "type": "quantitative", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "baseline": "bottom", "dy": -3, "fontWeight": "600" },
+      "encoding": {
+        "x": { "field": "country", "type": "nominal", "sort": "-y" },
+        "y": { "field": "mobile_speed", "type": "quantitative" },
+        "text": { "field": "mobile_speed", "type": "quantitative", "format": ".1f" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "labelFontSize": 12, "titleFontSize": 12 }
+  }
+}
+
+
