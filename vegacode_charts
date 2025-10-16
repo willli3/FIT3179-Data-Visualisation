@@ -281,3 +281,152 @@ area map for electricity usage per kwh:
   "config": { "view": { "stroke": null } }
 }
 
+
+average mobile data cost
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average Mobile Data Cost (USD per GB) — 2021",
+  "width": 900,
+  "height": 320,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/costofdata.csv",
+    "format": {"type": "csv"}
+  },
+
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5, "max": 155, "step": 1,
+        "name": "Slide to increase the amount of countries: "
+      }
+    }
+  ],
+
+  "transform": [
+    { "calculate": "toNumber(datum['Avg Price of 1GB'])", "as": "value" },
+    { "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "value", "order": "descending"}] },
+    { "filter": "datum.rank <= TopN" },
+    { "sort": [{"field": "value", "order": "descending"}] }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "ordinal",
+      "sort": {"field": "value", "order": "descending"},
+      "axis": {"labelAngle": -45, "title": null}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "USD per GB (2024)",
+      "axis": {"format": ".2f"}
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "line": {"color": "#1f77b4", "strokeWidth": 2},
+        "color": {"value": "#1f77b4"},
+        "opacity": 0.35
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "opacity": 0, "size": 120},
+      "encoding": {
+        "tooltip": [
+          {"field": "Country", "title": "Country"},
+          {"field": "rank", "type": "quantitative", "title": "Rank", "format": ".0f"},
+          {"field": "value", "type": "quantitative", "title": "USD/GB", "format": ".2f"}
+        ]
+      }
+    }
+  ],
+
+  "config": { "view": { "stroke": null } }
+}
+
+
+average broadband monthly cost
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Fixed Broadband Monthly Cost (USD) — 2024",
+  "width": 900,
+  "height": 320,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internetcost.csv",
+    "format": {"type": "csv"}
+  },
+
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5, "max": 215, "step": 1,
+        "name": "Slide to increase the amount of countries: "
+      }
+    }
+  ],
+
+  "transform": [
+    { "calculate": "toNumber(datum['BroadbandCostPerMonth_2024'])", "as": "cost" },
+    { "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "cost", "order": "descending"}] },
+    { "filter": "datum.rank <= TopN" },
+    { "sort": [{"field": "cost", "order": "descending"}] }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": {"field": "cost", "order": "descending"},
+      "axis": {"labelAngle": -45, "title": null}
+    },
+    "y": {
+      "field": "cost",
+      "type": "quantitative",
+      "title": "USD per month (2024)",
+      "axis": {"format": ".2f"}
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "line": {"color": "#1f77b4", "strokeWidth": 2},
+        "color": {"value": "#1f77b4"},
+        "opacity": 0.35
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "opacity": 0, "size": 120},
+      "encoding": {
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "rank", "type": "quantitative", "title": "Rank", "format": ".0f"},
+          {"field": "cost", "type": "quantitative", "title": "USD / month", "format": ".2f"}
+        ]
+      }
+    }
+  ],
+
+  "config": { "view": { "stroke": null } }
+}
+
+
