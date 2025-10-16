@@ -41,7 +41,6 @@
   <h1>How fast is the world electronically?</h1>
 
   <!-- 1) Choropleth -->
-  <h2>Median Internet Speed by Country — Fixed Broadband (2024)</h2>
   <div id="map" class="vis"></div>
   <div class="caption">
     <h3>header or title for broadband speed here</h3>
@@ -51,7 +50,6 @@
   <hr />
 
   <!-- 2) Scatter: Mobile vs Population -->
-  <h2>Mobile Median Speed (Mbps) vs Population (2024)</h2>
   <div id="scatter" class="vis"></div>
   <div class="caption">
     <h3>header or title for mobile speed here</h3>
@@ -68,7 +66,7 @@
     </div>
 
     <div class="caption">
-      <h3>header or title for top 5 broadband speeds in comparison to australia</h3>
+      <h2>header or title for top 5 broadband speeds in comparison to australia</h2>
       <p>write text for top 5 and comparison here</p>
     </div>
 
@@ -78,7 +76,6 @@
     </div>
 
     <div>
-      <h2>Mobile Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-mobile" class="vis"></div>
     </div>
   </div>
@@ -137,7 +134,7 @@ const specMap = {
       ],
       "mark": {"type": "geoshape"},
       "encoding": {
-        "color": {"field": "MedianMbps","type": "quantitative","title": "Median speed (Mbps)","scale": {"scheme": "blues"}},
+        "color": {"field": "MedianMbps","type": "quantitative","title": "Median speed (Mbps)","scale": {"scheme": "reds"}},
         "tooltip": [
           {"field": "country", "title": "Country"},
           {"field": "MedianMbps", "type": "quantitative", "format": ".1f", "title": "Median (Mbps)"}
