@@ -1,0 +1,156 @@
+index,Rank,Country,Avg Price of 1GB
+0,1,India,0.09
+1,2,Israel,0.11
+2,3,Kyrgyzstan,0.21
+3,4,Italy,0.43
+4,5,Ukraine,0.46
+5,6,Kazakhstan,0.46
+6,7,Somalia,0.5
+7,8,Sri Lanka,0.51
+8,9,Russia,0.52
+9,10,Vietnam,0.57
+10,11,China,0.61
+11,12,Sudan,0.63
+12,13,Indonesia,0.64
+13,14,Algeria,0.65
+14,15,Australia,0.68
+15,16,Pakistan,0.69
+16,17,Poland,0.7
+17,18,Bangladesh,0.7
+18,19,Chile,0.71
+19,20,Turkey,0.72
+20,21,Tanzania,0.73
+21,22,Dominican Republic,0.74
+22,23,Mongolia,0.74
+23,24,Iran,0.75
+24,25,Kuwait,0.77
+25,26,Myanmar,0.78
+26,27,Denmark,0.8
+27,28,France,0.81
+28,29,Nepal,0.86
+29,30,Belarus,0.89
+30,31,Georgia,0.93
+31,32,Ghana,0.94
+32,33,Monaco,0.98
+33,34,Western Sahara,0.99
+34,35,Morocco,0.99
+35,36,Brazil,1.01
+36,37,Romania,1.03
+37,38,Jordan,1.03
+38,39,Kenya,1.05
+39,40,Armenia,1.05
+40,41,Austria,1.08
+41,42,Egypt,1.09
+42,43,Moldova,1.12
+43,44,Malaysia,1.12
+44,45,Thailand,1.23
+45,46,Estonia,1.27
+46,47,Uzbekistan,1.34
+47,48,Ireland,1.36
+48,49,Zambia,1.36
+49,50,Tunisia,1.37
+50,51,Nigeria,1.39
+51,52,United Kingdom,1.39
+52,53,Philippines,1.42
+53,54,El Salvador,1.45
+54,55,Argentina,1.45
+55,56,Rwanda,1.48
+56,57,Slovenia,1.48
+57,58,Cambodia,1.5
+58,59,Afghanistan,1.55
+59,60,Uruguay,1.58
+60,61,Serbia,1.6
+61,62,Uganda,1.62
+62,63,Nicaragua,1.71
+63,64,Macedonia,1.75
+64,65,Spain,1.81
+65,66,Lithuania,1.85
+66,67,Azerbaijan,1.86
+67,68,Congo,1.94
+68,69,Sweden,2.07
+69,70,Guinea,2.08
+70,71,Timor-Leste,2.08
+71,72,Saudi Arabia,2.12
+72,73,Burundi,2.12
+73,74,Peru,2.13
+74,75,Lesotho,2.13
+75,76,Finland,2.14
+76,77,Guatemala,2.17
+77,78,Bulgaria,2.22
+78,79,Bahrain,2.27
+79,80,Paraguay,2.3
+80,81,Ethiopia,2.44
+81,82,Singapore,2.47
+82,83,Burkina Faso,2.47
+83,84,Croatia,2.48
+84,85,Mauritius,2.48
+85,86,Hong Kong,2.55
+86,87,Haiti,2.74
+87,88,Costa Rica,2.74
+88,89,Cameroon,2.75
+89,90,Albania,2.83
+90,91,Netherlands,2.98
+91,92,Bosnia and Herzegovina,3.04
+92,93,Honduras,3.12
+93,94,Côte d'Ivoire,3.2
+94,95,Ecuador,3.24
+95,96,Liberia,3.25
+96,97,Palestine,3.26
+97,98,Niger,3.3
+98,99,Senegal,3.3
+99,100,Mozambique,3.33
+100,101,Colombia,3.46
+101,102,Sierra Leone,3.69
+102,103,United Arab Emirates,3.78
+103,104,Latvia,3.79
+104,105,Lebanon,3.82
+105,106,Slovakia,3.84
+106,107,Jamaica,3.88
+107,108,Japan,3.91
+108,109,Germany,4.06
+109,110,Qatar,4.12
+110,111,Guinea-Bissau,4.12
+111,112,Mali,4.12
+112,113,Lao PDR,4.16
+113,114,Iraq,4.2
+114,115,South Africa,4.3
+115,116,Togo,4.5
+116,117,Oman,4.58
+117,118,Mauritania,4.63
+118,119,Tajikistan,4.65
+119,120,Libya,4.73
+120,121,Mexico,4.77
+121,122,Namibia,4.78
+122,123,Belgium,4.88
+123,124,Gabon,4.89
+124,125,Portugal,4.97
+125,126,Bolivia,5.09
+126,127,Gambia,5.1
+127,128,Norway,5.28
+128,129,Angola,5.29
+129,130,Hungary,5.32
+130,131,Papua New Guinea,5.4
+131,132,Taiwan,5.91
+132,133,Trinidad and Tobago,5.92
+133,134,New Zealand,6.06
+134,135,Syria,6.55
+135,136,Panama,6.69
+136,137,Czech Republic,7.95
+137,138,United States of America,8
+138,139,Central African Republic,8.25
+139,140,Switzerland,8.38
+140,141,Madagascar,8.81
+141,142,Puerto Rico,9.17
+142,143,South Korea,10.94
+143,144,Turkmenistan,11.44
+144,145,Greece,12.06
+145,146,Canada,12.55
+146,147,Equatorial Guinea,12.78
+147,148,Eswatini,13.31
+148,149,Cuba,13.33
+149,150,Cyprus,13.56
+150,151,Botswana,13.87
+151,152,Yemen,15.98
+152,153,Chad,23.33
+153,154,Benin,27.22
+154,155,Malawi,27.41
