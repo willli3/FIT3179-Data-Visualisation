@@ -39,6 +39,7 @@
 <body>
 <div class="wrap">
   <h1>How fast is the world electronically?</h1>
+  <h2>Median Internet Speed by Country - Fixed Broadband (2024)</h2>
 
   <!-- 1) Choropleth -->
   <div id="map" class="vis"></div>
@@ -50,6 +51,7 @@
 
   <!-- 2) Scatter: Mobile vs Population -->
   <h1>Does Higher Population Mean Higher Speeds?</h1>
+  <h2>Mobile Median Speed (Mbps) vs Population (2024)</h2>
   <div id="scatter" class="vis"></div>
   <div class="caption">
     <p style="font-size: 24px;"> The chart above displaying a nations population and its average mobile speed tells us that there is no clear relationship between a country's population size and its mobile internet speed. Nations with smaller populations, such as Qatar, the United Arab Emirates, and Singapore achieve the highest median mobile speeds, whereas highly populated countries such as India, Indonesia, and Nigeria tend to cluster at lower speed level. This suggests that there is no connection between a nations population size and its mobile speed.</p>
@@ -112,8 +114,6 @@
 /* ---------- Spec 1: Choropleth (with ocean layer) ---------- */
 const specMap = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": { "text": "Median Internet Speed by Country - Fixed Broadband (May 2024)",
-  "anchor": "middle"},
   "width": 1200,
   "height": 520,
   "projection": {"type": "equalEarth"},
@@ -155,7 +155,6 @@ const specMap = {
 /* ---------- Spec 2: Scatter (Mobile vs Population) ---------- */
 const specScatter = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Mobile Median Speed (Mbps) vs Population (2024)",
   "width": 1100,
   "height": 520,
   "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"},
