@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>How fast is the world?</title>
+  <title>How fast is the world electronically?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Vega libs -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <style>
-    :root { --maxw: 1100px; }
+    :root { --maxw: 1300px; }
     body { margin: 24px; font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#222; }
     .wrap { max-width: var(--maxw); margin: 0 auto; }
     h1 { margin: 0 0 12px; font-size: 28px; text-align: center; }
@@ -43,62 +43,68 @@
   <!-- 1) Choropleth -->
   <div id="map" class="vis"></div>
   <div class="caption">
-    <h3>header or title for broadband speed here</h3>
-    <p>write text for broadband speed here</p>
+    <p style="font-size: 24px;"> The choropleth map above illustrates the global disparities in fixed broadband internet speeds as of May 2024. Countries such as Singapore, Hong Kong, Chile, the United Arab Emirates and Iceland display the highest median internet speeds, reflecting advanced digital infrastructure. In constrast, majority of Africa display lighter shades, indicating slower speeds likely due to limited broadband penetration and outdated network technology. </p>
   </div>
 
   <hr />
 
   <!-- 2) Scatter: Mobile vs Population -->
+  <h1>Does Higher Population Mean Higher Speeds?</h1>
   <div id="scatter" class="vis"></div>
   <div class="caption">
-    <h3>header or title for mobile speed here</h3>
-    <p>write text for mobile speed here</p>
+    <p style="font-size: 24px;"> The chart above displaying a nations population and its average mobile speed tells us that there is no clear relationship between a country's population size and its mobile internet speed. Nations with smaller populations, such as Qatar, the United Arab Emirates, and Singapore achieve the highest median mobile speeds, whereas highly populated countries such as India, Indonesia, and Nigeria tend to cluster at lower speed level. This suggests that there is no connection between a nations population size and its mobile speed.</p>
   </div>
 
   <hr />
 
   <!-- 3 & 4) Bars in requested layout -->
+<div>
+  <h1>The Top 5 Breakdown Comparison To Australia</h1>
   <div class="grid-bars">
     <div>
-      <h2>Fixed Broadband Speeds (Median Mbps) in comparison to Australia</h2>
       <div id="bar-fixed" class="vis"></div>
     </div>
 
     <div class="caption">
-      <h2>header or title for top 5 broadband speeds in comparison to australia</h2>
-      <p>write text for top 5 and comparison here</p>
+      <p style="font-size: 24px;"> Singapore tops the world in broadband performance with a median speed of 290 Mbps, closely followed by Hong Kong (282.5 Mbps), Chile(274.5 Mbps), United Arab Emirates (272.9 Mbps), and Iceland (255.7 Mbps).</p>
+      <p style="font-size: 24px;"> These nations share strong fibre intrastructure, competitive telecom markets, and government-backed digital strategies that support high-speed connectivity.</p>
+      <p style="font-size: 24px;"> In constrast, Australia's median speed of 69.4Mbps remains considerable lower, underscoring the country's slower network upgrades and rural broadband limitations compared to global front-runners.</p>
     </div>
 
     <div class="caption">
-      <h3>header or title for top 5 mobile speeds in comparison to australia</h3>
-      <p>write text for top 5 and comparison here</p>
+      <p style="font-size: 24px;"> Qatar leads global mobile performance with a median speed of 329.4 Mbps, followed closely by the United Arab Emirates (309.8Mbps), Kuwait (233.8 Mbps), Denmark (147.3 Mbps), and Norway (142.2 Mbps).</p>
+      <p style="font-size: 24px;"> Each of these nations benefits from early 5G rollout, dense network coverage, and heavy investment in mobile infrastructure.</p>
+      <p style="font-size: 24px;"> In comparison, Australia's median mobile speed of 93.4 Mbps lags well behind, highlighting slower 5G expansion and regional performance disparities across the country.</p>
     </div>
 
     <div>
       <div id="bar-mobile" class="vis"></div>
     </div>
   </div>
-
+</div>
   <hr />
 
   <!-- 5) Area charts with DROPDOWN SWITCHER -->
-  <h2>Costs related to internet & electricity</h2>
+  <h1>Costs related to electricity, broadband and mobile costs.</h1>
 
   <div class="switcher">
     <label for="areaSelect">Choose chart:</label>
     <select id="areaSelect">
-      <option value="kwh">Electricity Cost (USD per kWh) — 2024</option>
-      <option value="broadband">Fixed Broadband Monthly Cost (USD) — 2024</option>
-      <option value="mobiledata">Average Mobile Data Cost (USD per GB) — 2021</option>
+      <option value="kwh">Electricity Cost (USD per kWh) - 2024</option>
+      <option value="broadband">Fixed Broadband Monthly Cost (USD) - 2024</option>
+      <option value="mobiledata">Average Mobile Data Cost (USD per GB) - 2021</option>
     </select>
   </div>
 
   <div id="areaVis" class="vis"></div>
 
   <div class="caption">
-    <h3>header or title for costs section here</h3>
-    <p>write text for the selected area chart here</p>
+    <p style="font-size: 24px;"> Electricity prices vary dramatically worldwide, with Bermuda, Italy, and the Ireland among the highest, exceeding $0.45 USD per kWh. In constrast, countries such as Cube, Ethiopia and Iran have the lowest rates.</p>
+    <p style="font-size: 24px;"> </p>
+    <p style="font-size: 24px;"> Fixed broadband costs are the highest in regions such as Solomon Islands, Burundi and Turks and Caicos Islands, reaching the highest above $400 USD per month. Conversely, nations with mature digital economics, like Malta, South Korea and Taiwan maintain far more affordable broadband access below $30 USD per month.</p>
+    <p style="font-size: 24px;"> </p>
+    <p style="font-size: 24px;"> Mobile data pricing shows a steep global divide as Malawai, Benin and Chad record costs of above $25 USD per GB, whereas countries such as India, Italy and Denmark offer some of the world's cheapest mobile data, averaging under $0.10 USD per GB. This gap underscores the importance of competition and infrastructure scale in reducing consumer data costs.</p>
+    <p style="font-size: 24px;"> </p>
   </div>
 </div>
 
@@ -106,9 +112,10 @@
 /* ---------- Spec 1: Choropleth (with ocean layer) ---------- */
 const specMap = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Median Internet Speed by Country — Fixed Broadband (May 2024)",
-  "width": 900,
-  "height": 450,
+  "title": { "text": "Median Internet Speed by Country - Fixed Broadband (May 2024)",
+  "anchor": "middle"},
+  "width": 1200,
+  "height": 520,
   "projection": {"type": "equalEarth"},
   "data": {
     "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
@@ -149,7 +156,7 @@ const specMap = {
 const specScatter = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Mobile Median Speed (Mbps) vs Population (2024)",
-  "width": 900,
+  "width": 1100,
   "height": 520,
   "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"},
   "params": [
@@ -174,7 +181,7 @@ const specScatter = {
   ],
   "mark": {"type": "circle", "opacity": 0.75},
   "encoding": {
-    "x": {"field": "mobile_speed_num", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)"},
+    "x": {"field": "mobile_speed_num", "type": "quantitative", "title": "Mobile - Median Speed (Mbps)"},
     "y": {"field": "population_2024", "type": "quantitative", "title": "Population (2024)", "scale": {"type": "log", "nice": true}, "axis": {"format": "s", "tickCount": 7}},
     "size": {"value": 140},
     "color": {"field": "continent_code","type": "nominal","title": "Continent","scale": {"domain": ["AF","AS","EU","NA","OC","SA"],"range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]}},
@@ -189,7 +196,7 @@ const specScatter = {
   "config": {"view": {"stroke": null}}
 };
 
-/* ---------- Spec 3: Bar — Fixed Broadband incl. Australia ---------- */
+/* ---------- Spec 3: Bar - Fixed Broadband incl. Australia ---------- */
 const specBarFixed = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Fixed Broadband Speeds (Median Mbps) in comparison to Australia",
@@ -205,7 +212,7 @@ const specBarFixed = {
       "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
       "encoding": {
         "x": {"field": "country", "type": "nominal", "sort": "-y", "title": null, "axis": {"labelAngle": 0}},
-        "y": {"field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband — Median Speed (Mbps)"},
+        "y": {"field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband - Median Speed (Mbps)"},
         "color": {"value": "#377eb8"},
         "tooltip": [
           {"field": "country", "title": "Country"},
@@ -221,7 +228,7 @@ const specBarFixed = {
   "config": {"view": {"stroke": null}, "axis": {"labelFontSize": 12, "titleFontSize": 12}}
 };
 
-/* ---------- Spec 4: Bar — Mobile incl. Australia ---------- */
+/* ---------- Spec 4: Bar - Mobile incl. Australia ---------- */
 const specBarMobile = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Mobile Speeds (Median Mbps) in comparison to Australia",
@@ -237,7 +244,7 @@ const specBarMobile = {
       "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
       "encoding": {
         "x": {"field": "country", "type": "nominal", "sort": "-y", "title": null, "axis": {"labelAngle": 0}},
-        "y": {"field": "mobile_speed", "type": "quantitative", "title": "Mobile — Median Speed (Mbps)"},
+        "y": {"field": "mobile_speed", "type": "quantitative", "title": "Mobile - Median Speed (Mbps)"},
         "color": {"value": "#ff7f00"},
         "tooltip": [
           {"field": "country", "title": "Country"},
@@ -255,14 +262,14 @@ const specBarMobile = {
 
 /* ---------- Area chart specs (3 options) ---------- */
 
-/* A) Electricity Cost (USD per kWh) — 2024 */
+/* A) Electricity Cost (USD per kWh) - 2024 */
 const specAreaKwh = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Electricity Cost (USD per kWh) — 2024",
-  "width": 900,
-  "height": 320,
+  "title": "Electricity Cost (USD per kWh) - 2024",
+  "width": 1200,
+  "height": 310,
   "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/electricity_cost_kwh.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 145,"step": 1,"name": "Slide to increase the amount of countries: "}}],
+  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 145,"step": 5,"name": "Slide to increase the amount of countries: "}}],
   "transform": [
     {"calculate": "toNumber(datum.ElectricityCostUSDPerkWh_2024)", "as": "cost"},
     {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "cost", "order": "descending"}]},
@@ -281,14 +288,14 @@ const specAreaKwh = {
   "config": {"view": {"stroke": null}}
 };
 
-/* B) Fixed Broadband Monthly Cost (USD) — 2024 */
+/* B) Fixed Broadband Monthly Cost (USD) - 2024 */
 const specAreaBroadband = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Fixed Broadband Monthly Cost (USD) — 2024",
-  "width": 900,
+  "title": "Fixed Broadband Monthly Cost (USD) - 2024",
+  "width": 1200,
   "height": 320,
   "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internetcost.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 215,"step": 1,"name": "Slide to increase the amount of countries: "}}],
+  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 215,"step": 5,"name": "Slide to increase the amount of countries: "}}],
   "transform": [
     {"calculate": "toNumber(datum['BroadbandCostPerMonth_2024'])", "as": "cost"},
     {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "cost", "order": "descending"}]},
@@ -307,14 +314,14 @@ const specAreaBroadband = {
   "config": {"view": {"stroke": null}}
 };
 
-/* C) Average Mobile Data Cost (USD per GB) — 2021 */
+/* C) Average Mobile Data Cost (USD per GB) - 2021 */
 const specAreaMobile = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Average Mobile Data Cost (USD per GB) — 2021",
-  "width": 900,
+  "title": "Average Mobile Data Cost (USD per GB) - 2021",
+  "width": 1200,
   "height": 320,
   "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/costofdata.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 155,"step": 1,"name": "Slide to increase the amount of countries: "}}],
+  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 155,"step": 5,"name": "Slide to increase the amount of countries: "}}],
   "transform": [
     {"calculate": "toNumber(datum['Avg Price of 1GB'])", "as": "value"},
     {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "value", "order": "descending"}]},
