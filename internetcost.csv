@@ -1,4 +1,4 @@
-flagCode,country,BroadbandCostPerMonth_2024,BroadbandCostPerMegabitPerMonth_2024,MonthlyInternetCostViaNumbeo_2023
+flagCode,Country,BroadbandCostPerMonth_2024,BroadbandCostPerMegabitPerMonth_2024,MonthlyInternetCostViaNumbeo_2023
 SB,Solomon Islands,457.84,289.75,
 BI,Burundi,304.57,116.66,
 TC,Turks and Caicos Islands,212,0.84,
@@ -210,3 +210,4 @@ UA,Ukraine,7.35,0.04,5.72
 BY,Belarus,7.03,0.75,10.48
 AR,Argentina,5.17,0.03,19.39
 SD,Sudan,2.4,0.83,
+
