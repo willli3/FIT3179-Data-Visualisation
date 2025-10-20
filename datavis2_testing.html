@@ -69,13 +69,17 @@
 
     <div class="caption">
       <p style="font-size: 24px;"> Singapore tops the world in broadband performance with a median speed of 290 Mbps, closely followed by Hong Kong (282.5 Mbps), Chile(274.5 Mbps), United Arab Emirates (272.9 Mbps), and Iceland (255.7 Mbps).</p>
+      <br><br>
       <p style="font-size: 24px;"> These nations share strong fibre intrastructure, competitive telecom markets, and government-backed digital strategies that support high-speed connectivity.</p>
+      <br><br>
       <p style="font-size: 24px;"> In constrast, Australia's median speed of 69.4Mbps remains considerable lower, underscoring the country's slower network upgrades and rural broadband limitations compared to global front-runners.</p>
     </div>
 
     <div class="caption">
       <p style="font-size: 24px;"> Qatar leads global mobile performance with a median speed of 329.4 Mbps, followed closely by the United Arab Emirates (309.8Mbps), Kuwait (233.8 Mbps), Denmark (147.3 Mbps), and Norway (142.2 Mbps).</p>
+      <br><br>
       <p style="font-size: 24px;"> Each of these nations benefits from early 5G rollout, dense network coverage, and heavy investment in mobile infrastructure.</p>
+      <br><br>
       <p style="font-size: 24px;"> In comparison, Australia's median mobile speed of 93.4 Mbps lags well behind, highlighting slower 5G expansion and regional performance disparities across the country.</p>
     </div>
 
@@ -87,7 +91,7 @@
   <hr />
 
   <!-- 5) Area charts with DROPDOWN SWITCHER -->
-  <h1>Costs related to electricity, broadband and mobile costs.</h1>
+  <h1>Costs related to electricity, broadband and mobile costs</h1>
 
   <div class="switcher">
     <label for="areaSelect">Choose chart:</label>
@@ -102,13 +106,40 @@
 
   <div class="caption">
     <p style="font-size: 24px;"> Electricity prices vary dramatically worldwide, with Bermuda, Italy, and the Ireland among the highest, exceeding $0.45 USD per kWh. In constrast, countries such as Cube, Ethiopia and Iran have the lowest rates.</p>
-    <p style="font-size: 24px;"> </p>
+    <br><br>
     <p style="font-size: 24px;"> Fixed broadband costs are the highest in regions such as Solomon Islands, Burundi and Turks and Caicos Islands, reaching the highest above $400 USD per month. Conversely, nations with mature digital economics, like Malta, South Korea and Taiwan maintain far more affordable broadband access below $30 USD per month.</p>
-    <p style="font-size: 24px;"> </p>
+    <br><br>
     <p style="font-size: 24px;"> Mobile data pricing shows a steep global divide as Malawai, Benin and Chad record costs of above $25 USD per GB, whereas countries such as India, Italy and Denmark offer some of the world's cheapest mobile data, averaging under $0.10 USD per GB. This gap underscores the importance of competition and infrastructure scale in reducing consumer data costs.</p>
-    <p style="font-size: 24px;"> </p>
   </div>
 </div>
+<hr />
+
+<div class="caption" style="max-width: 1100px; margin: 0 auto; text-align: center;">
+  <h1>
+How Australia matches up against the world
+  </h1>
+  <p style="font-size: 24px;">
+    Australia's internet landscape remains moderate in cost but underwhelming in performance when compared to global
+    leaders. While consumer broadband prices sit near the middle range globally, the average fixed broadband speed is
+    significantly lower than countries such as Singapore, Hong Kong, and the United Arab Emirates. <br><br>
+    Despite substantial investments in the NBN and 5G infrastructure, Australia's vast geography and lower population
+    density continue to challenge service equity, especially across rural regions. This imbalance between affordability
+    and speed highlights the need for ongoing investment to keep pace with global digital standards.
+  </p>
+</div>
+
+
+
+
+
+<hr />
+<h1>References and Acknowledgements</h1>
+<div 
+style="font-size: 24px;"> This visualisation was by William Leigh, and the data sets used can be found here:
+</div>
+
+
+
 
 <script>
 /* ---------- Spec 1: Choropleth (with ocean layer) ---------- */
@@ -143,8 +174,8 @@ const specMap = {
       "encoding": {
         "color": {"field": "MedianMbps","type": "quantitative","title": "Median speed (Mbps)","scale": {"scheme": "reds"}},
         "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "MedianMbps", "type": "quantitative", "format": ".1f", "title": "Median (Mbps)"}
+          {"field": "country", "title": "Country:"},
+          {"field": "MedianMbps", "type": "quantitative", "format": ".1f", "title": "Broadband Speed (Mbps):"}
         ]
       }
     }
@@ -185,11 +216,11 @@ const specScatter = {
     "size": {"value": 140},
     "color": {"field": "continent_code","type": "nominal","title": "Continent","scale": {"domain": ["AF","AS","EU","NA","OC","SA"],"range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]}},
     "tooltip": [
-      {"field": "Country", "title": "Country"},
-      {"field": "country_code", "title": "Code"},
-      {"field": "continent_code", "title": "Continent"},
-      {"field": "population_2024", "title": "Population (2024)", "type": "quantitative", "format": ",.0f"},
-      {"field": "mobile_speed_num", "title": "Mobile (Mbps)", "type": "quantitative", "format": ".1f"}
+      {"field": "Country", "title": "Country:"},
+      {"field": "country_code", "title": "Country Code:"},
+      {"field": "continent_code", "title": "Continent:"},
+      {"field": "population_2024", "title": "Population (2024):", "type": "quantitative", "format": ",.0f"},
+      {"field": "mobile_speed_num", "title": "Mobile Speed (Mbps):", "type": "quantitative", "format": ".1f"}
     ]
   },
   "config": {"view": {"stroke": null}}
@@ -214,8 +245,8 @@ const specBarFixed = {
         "y": {"field": "broadband_speed", "type": "quantitative", "title": "Fixed Broadband - Median Speed (Mbps)"},
         "color": {"value": "#377eb8"},
         "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "broadband_speed", "title": "Median Speed (Mbps)", "type": "quantitative", "format": ".1f"}
+          {"field": "country", "title": "Country:"},
+          {"field": "broadband_speed", "title": "Broadband Speed (Mbps):", "type": "quantitative", "format": ".1f"}
         ]
       }
     },
@@ -246,8 +277,8 @@ const specBarMobile = {
         "y": {"field": "mobile_speed", "type": "quantitative", "title": "Mobile - Median Speed (Mbps)"},
         "color": {"value": "#ff7f00"},
         "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "mobile_speed", "title": "Median Speed (Mbps)", "type": "quantitative", "format": ".1f"}
+          {"field": "country", "title": "Country:"},
+          {"field": "mobile_speed", "title": "Mobile Speed (Mbps):", "type": "quantitative", "format": ".1f"}
         ]
       }
     },
@@ -282,7 +313,7 @@ const specAreaKwh = {
   "layer": [
     {"mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35}},
     {"mark": {"type": "point","filled": true,"opacity": 0,"size": 120},
-     "encoding": {"tooltip": [{"field": "country","title": "Country"},{"field": "rank","type": "quantitative","title": "Ranking","format": ".0f"},{"field": "cost","type": "quantitative","title": "USD per kWh","format": ".3f"}]}}
+     "encoding": {"tooltip": [{"field": "country","title": "Country:"},{"field": "rank","type": "quantitative","title": "Country Ranking:","format": ".0f"},{"field": "cost","type": "quantitative","title": "USD/kWh:","format": ".3f"}]}}
   ],
   "config": {"view": {"stroke": null}}
 };
@@ -308,7 +339,7 @@ const specAreaBroadband = {
   "layer": [
     {"mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35}},
     {"mark": {"type": "point","filled": true,"opacity": 0,"size": 120},
-     "encoding": {"tooltip": [{"field": "country","title": "Country"},{"field": "rank","type": "quantitative","title": "Rank","format": ".0f"},{"field": "cost","type": "quantitative","title": "USD / month","format": ".2f"}]}}
+     "encoding": {"tooltip": [{"field": "country","title": "Country:"},{"field": "rank","type": "quantitative","title": "Country Ranking","format": ".0f"},{"field": "cost","type": "quantitative","title": "USD/month:","format": ".2f"}]}}
   ],
   "config": {"view": {"stroke": null}}
 };
@@ -334,7 +365,7 @@ const specAreaMobile = {
   "layer": [
     {"mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35}},
     {"mark": {"type": "point","filled": true,"opacity": 0,"size": 120},
-     "encoding": {"tooltip": [{"field": "Country","title": "Country"},{"field": "rank","type": "quantitative","title": "Rank","format": ".0f"},{"field": "value","type": "quantitative","title": "USD/GB","format": ".2f"}]}}
+     "encoding": {"tooltip": [{"field": "Country","title": "Country:"},{"field": "rank","type": "quantitative","title": "Country Ranking:","format": ".0f"},{"field": "value","type": "quantitative","title": "USD/GB:","format": ".2f"}]}}
   ],
   "config": {"view": {"stroke": null}}
 };
