@@ -1,4 +1,4 @@
-﻿country,country_code,continent_code,internet_type,median_speed(mbps)
+﻿Country,country_code,continent_code,internet_type,median_speed(mbps)
 Qatar,QA,AS,mobile,329.37
 United Arab Emirates,AE,AS,mobile,309.77
 Kuwait,KW,AS,mobile,233.78
@@ -146,3 +146,4 @@ East Timor,TL,AS,mobile,7.36
 Afghanistan,AF,AS,mobile,7.25
 Yemen,YE,AS,mobile,6.53
 Cuba,CU,NA,mobile,3.77
+
