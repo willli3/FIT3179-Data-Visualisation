@@ -1,4 +1,4 @@
-﻿country,country_code,continent_code,internet_type,median_speed(mbps)
+﻿Country,country_code,continent_code,internet_type,median_speed(mbps)
 Singapore,SG,AS,fixed_broadband,289.98
 Hong Kong (SAR),HK,AS,fixed_broadband,282.48
 Chile,CL,SA,fixed_broadband,274.46
@@ -180,4 +180,5 @@ Burundi,BI,AF,fixed_broadband,6.2
 Syria,SY,AS,fixed_broadband,4.6
 Afghanistan,AF,AS,fixed_broadband,3.5
 Cuba,CU,NA,fixed_broadband,2.69
+
 
