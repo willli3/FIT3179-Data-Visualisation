@@ -31,13 +31,13 @@
     h1 {
       text-align: center;
       color: #fff;
-      font-size: 28px;
+      font-size: 44px;
       margin-bottom: 8px;
     }
     h2 {
       text-align: center;
       color: #ccc;
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 20px;
     }
     p {
@@ -133,23 +133,26 @@
     </div>
     <div id="areaVis" class="vis"></div>
     <p>Electricity prices vary dramatically worldwide, with Bermuda, Italy, and the Ireland among the highest,
-      exceeding $0.45 USD per kWh. In contrast, countries such as Cuba, Ethiopia and Iran have the lowest rates.<br><br>
+      exceeding $0.45 USD per kWh. In contrast, countries such as Cuba, Ethiopia and Iran have the lowest rates.
+      <br><br>
       Fixed broadband costs are the highest in regions such as Solomon Islands, Burundi and Turks and Caicos Islands,
-      reaching the highest above $400 USD per month. Conversely, nations with mature digital economies, like Malta,
-      South Korea and Taiwan maintain far more affordable broadband access below $30 USD per month.<br><br>
+      reaching its highest above $400 USD per month. Conversely, nations with mature digital economies, like Malta,
+      South Korea and Taiwan maintain far more affordable broadband access below $30 USD per month.
+      <br><br>
       Mobile data pricing shows a steep global divide as Malawi, Benin and Chad record costs of above $25 USD per GB,
       whereas countries such as India, Italy and Denmark offer some of the world's cheapest mobile data, averaging
-      under $0.10 USD per GB. This gap underscores the importance of competition and infrastructure scale in reducing
+      under $1.0 USD per GB. This gap underscores the importance of competition and infrastructure scale in reducing
       consumer data costs.
     </p>
   </div>
 
   <!-- AUSTRALIA COMPARISON -->
   <div class="section-box">
-    <h1>How Australia matches up against the world</h1>
+    <h1>How Does Australia match up against the world</h1>
     <p>Australia's internet landscape remains moderate in cost but underwhelming in performance when compared to global
       leaders. While consumer broadband prices sit near the middle range globally, the average fixed broadband speed is
-      significantly lower than countries such as Singapore, Hong Kong, and the United Arab Emirates.<br><br>
+      significantly lower than countries such as Singapore, Hong Kong, and the United Arab Emirates.
+      <br><br>
       Despite substantial investments in the NBN and 5G infrastructure, Australia's vast geography and lower population
       density continue to challenge service equity, especially across rural regions. This imbalance between affordability
       and speed highlights the need for ongoing investment to keep pace with global digital standards.
@@ -160,7 +163,8 @@
   <div class="section-box">
     <h1>References and Acknowledgements</h1>
     <p>This visualisation was by William Leigh. All rightful ownership goes towards the author(s) of the data set(s),
-      which can be found here:<br>
+      which can be found here:
+      <br><br>
       <a href="https://www.kaggle.com/datasets/chayanonc/internet-download-speed-comparison-2024?select=internet_speed_by_country_may2024.csv">Source 1</a>,
       <a href="https://www.kaggle.com/datasets/dataanalyst001/world-population-by-country-2024">Source 2</a>,
       <a href="https://www.kaggle.com/datasets/thedevastator/the-global-cost-of-1gb-of-mobile-data">Source 3</a>,
@@ -174,6 +178,7 @@
 <script>
 // --- Embed options ---
 const opt = { actions: false };
+
 
 // --- MAP ---
 const specMap = {
@@ -202,113 +207,344 @@ const specMap = {
       "mark": {"type": "geoshape"},
       "encoding": {
         "color": {"field": "MedianMbps","type": "quantitative","title": "Median speed (Mbps)","scale": {"scheme": "reds"}},
-        "tooltip": [{"field": "country","title": "Country"},{"field": "MedianMbps","type": "quantitative","format": ".1f","title": "Median (Mbps)"}]
+        "tooltip": [{"field": "country","title": "Country:"},{"field": "MedianMbps","type": "quantitative","format": ".1f","title": "Broadband Speed (Mbps):"}]
       }
     }
   ],
   "config": {"view": {"stroke": null}}
 };
 
+
 // --- SCATTER ---
 const specScatter = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 1070,
   "height": 520,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/population2024.csv"
+  },
   "params": [
-    {"name": "MinMobile","value": 0,"bind": {"input": "range","min": 0,"max": 350,"step": 5,"name": "Minimum Mobile Speed (Mbps): "}},
-    {"name": "Continent_selection","bind": {"input": "select","options": [null,"AF","AS","EU","NA","OC","SA"],"labels": ["Show All","Africa","Asia","Europe","North America","Oceania","South America"],"name": "Continent: "}}
+    {
+      "name": "MinMobile",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 350,
+        "step": 5,
+        "name": "Minimum Mobile Speed (Mbps): "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "AF", "AS", "EU", "NA", "OC", "SA"],
+        "labels": [
+          "Show All",
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
+        ],
+        "name": "Continent: "
+      }
+    }
   ],
   "transform": [
-    {"lookup": "Country","from": {"data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"},"key": "country","fields": ["median_speed(mbps)","continent_code","country_code"]},"as": ["mobile_speed","continent_code","country_code"]},
-    {"calculate": "toNumber(datum['Population 2024'])","as": "population_2024"},
-    {"calculate": "toNumber(datum.mobile_speed)","as": "mobile_speed_num"},
-    {"filter": "datum.mobile_speed_num >= MinMobile"},
-    {"filter": "Continent_selection == null || datum.continent_code == Continent_selection"}
+    {
+      "lookup": "Country",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
+        },
+        "key": "country",
+        "fields": ["median_speed(mbps)", "continent_code", "country_code"]
+      },
+      "as": ["mobile_speed", "continent_code", "country_code"]
+    },
+    { "calculate": "toNumber(datum['Population 2024'])", "as": "population_2024" },
+    { "calculate": "toNumber(datum.mobile_speed)", "as": "mobile_speed_num" },
+    { "filter": "datum.mobile_speed_num >= MinMobile" },
+    { "filter": "Continent_selection == null || datum.continent_code == Continent_selection" }
   ],
-  "mark": {"type": "circle","opacity": 0.75},
-  "encoding": {
-    "x": {"field": "mobile_speed_num","type": "quantitative","title": "Mobile - Median Speed (Mbps)"},
-    "y": {"field": "population_2024","type": "quantitative","title": "Population (2024)","scale": {"type": "log","nice": true}},
-    "color": {"field": "continent_code","type": "nominal","title": "Continent","scale": {"domain": ["AF","AS","EU","NA","OC","SA"],"range": ["#a6cee3","#377eb8","#ff7f00","#e41a1c","#1b9e77","#984ea3"]}},
-    "tooltip": [{"field": "Country","title": "Country"},{"field": "mobile_speed_num","title": "Mobile (Mbps)","format": ".1f"}]
+  "mark": {
+    "type": "circle",
+    "opacity": 0.75
   },
-  "config": {"view": {"stroke": null}}
+  "encoding": {
+    "x": {
+      "field": "mobile_speed_num",
+      "type": "quantitative",
+      "title": "Mobile - Median Speed (Mbps)"
+    },
+    "y": {
+      "field": "population_2024",
+      "type": "quantitative",
+      "title": "Population (2024)",
+      "scale": { "type": "log", "nice": true }
+    },
+    "color": {
+      "field": "continent_code",
+      "type": "nominal",
+      "title": "Continent",
+      "scale": {
+        "domain": ["AF", "AS", "EU", "NA", "OC", "SA"],
+        "range": ["#a6cee3", "#377eb8", "#ff7f00", "#e41a1c", "#1b9e77", "#984ea3"]
+      }
+    },
+    "tooltip": [
+      { "field": "Country", "title": "Country:" },
+      { "field": "country_code", "title": "Country Code:" },
+      { "field": "continent_code", "title": "Continent Code:" },
+      { "field": "population_2024", "title": "Population:", "format": "," },
+      { "field": "mobile_speed_num", "title": "Mobile Speed (Mbps):", "format": ".1f" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null }
+  }
 };
+
 
 // --- BAR CHARTS ---
 const specBarFixed = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Fixed Broadband Speeds (Median Mbps)",
-  "width": 520,"height": 360,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_fixedbroadband.csv"},
-  "transform": [{"filter": "indexof(['Singapore','Hong Kong (SAR)','Chile','United Arab Emirates','Iceland','Australia'], datum.country) >= 0"},
-                {"calculate": "toNumber(datum['median_speed(mbps)'])", "as": "speed"}],
-  "mark": {"type": "bar","cornerRadiusTopLeft": 3,"cornerRadiusTopRight": 3},
-  "encoding": {"x": {"field": "country","type": "nominal","sort": "-y"},
-               "y": {"field": "speed","type": "quantitative","title": "Mbps"},
-               "color": {"value": "#377eb8"},
-               "tooltip": [{"field": "country"},{"field": "speed","format": ".1f"}]},
-  "config": {"view": {"stroke": null}}
+  "width": 520,
+  "height": 360,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_fixedbroadband.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Singapore','Hong Kong (SAR)','Chile','United Arab Emirates','Iceland','Australia'], datum.country) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum['median_speed(mbps)'])",
+      "as": "speed"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-y",
+      "title": "Country",
+      "axis": { "labelAngle": 0 }
+    },
+    "y": {
+      "field": "speed",
+      "type": "quantitative",
+      "title": "Fixed Broadband - Median Speed (Mbps)"
+    },
+    "tooltip": [
+      { "field": "country", "title": "Country:" },
+      { "field": "speed", "type": "quantitative", "format": ".1f", "title": "Broadband Speed (Mbps):" }
+    ],
+    "color": { "value": "#377eb8" }
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 6,
+    "cornerRadiusTopRight": 6
+  },
+  "config": { "view": { "stroke": null } }
 };
+
 
 const specBarMobile = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Mobile Speeds (Median Mbps)",
-  "width": 550,"height": 360,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"},
-  "transform": [{"filter": "indexof(['Qatar','United Arab Emirates','Kuwait','Denmark','Norway','Australia'], datum.country) >= 0"},
-                {"calculate": "toNumber(datum['median_speed(mbps)'])", "as": "speed"}],
-  "mark": {"type": "bar","cornerRadiusTopLeft": 3,"cornerRadiusTopRight": 3},
-  "encoding": {"x": {"field": "country","type": "nominal","sort": "-y"},
-               "y": {"field": "speed","type": "quantitative","title": "Mbps"},
-               "color": {"value": "#ff7f00"},
-               "tooltip": [{"field": "country"},{"field": "speed","format": ".1f"}]},
-  "config": {"view": {"stroke": null}}
+  "width": 550,
+  "height": 360,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/main/fixed_mobile.csv"
+  },
+  "transform": [
+    {
+      "filter": "indexof(['Qatar','United Arab Emirates','Kuwait','Denmark','Norway','Australia'], datum.country) >= 0"
+    },
+    {
+      "calculate": "toNumber(datum['median_speed(mbps)'])",
+      "as": "speed"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-y",
+      "title": "Country",
+      "axis": { "labelAngle": 0 }
+    },
+    "y": {
+      "field": "speed",
+      "type": "quantitative",
+      "title": "Mobile - Median Speed (Mbps)"
+    },
+    "tooltip": [
+      { "field": "country", "title": "Country:" },
+      { "field": "speed", "type": "quantitative", "format": ".1f", "title": "Mobile Speed (Mbps):" }
+    ],
+    "color": { "value": "#ff7f00" }
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTopLeft": 6,
+    "cornerRadiusTopRight": 6
+  },
+  "config": { "view": { "stroke": null } }
 };
+
 
 // --- AREA CHARTS ---
 const specAreaKwh = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1200,"height": 310,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/electricity_cost_kwh.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 145,"step": 5,"name": "Slide to increase the amount of countries: "}}],
-  "transform": [{"calculate": "toNumber(datum.ElectricityCostUSDPerkWh_2024)","as": "cost"},
-                {"window": [{"op": "rank","as": "rank"}],"sort": [{"field": "cost","order": "descending"}]},
-                {"filter": "datum.rank <= TopN"}],
-  "encoding": {"x": {"field": "country","type": "ordinal","sort": {"field": "cost","order": "descending"}},
-               "y": {"field": "cost","type": "quantitative","title": "USD per kWh (2024)"}},
-  "mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35},
+  "width": 1180,
+  "height": 320,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/electricity_cost_kwh.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 145,
+        "step": 5,
+        "name": "Number of countries: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "toNumber(datum.ElectricityCostUSDPerkWh_2024)", "as": "cost"},
+    {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "cost", "order": "descending"}]},
+    {"filter": "datum.rank <= TopN"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": {"field": "cost", "order": "descending"},
+      "title": "Country"
+    },
+    "y": {
+      "field": "cost",
+      "type": "quantitative",
+      "title": "USD per kWh (2024)"
+    },
+    "tooltip": [
+      {"field": "country", "title": "Country:"},
+      {"field": "cost", "type": "quantitative", "format": ".3f", "title": "Cost (USD per kWh):"}
+    ]
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "line": {"color": "#1f77b4", "strokeWidth": 2},
+    "color": {"value": "#1f77b4"},
+    "opacity": 0.35
+  },
+
   "config": {"view": {"stroke": null}}
 };
+
 
 const specAreaBroadband = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1200,"height": 320,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internetcost.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 215,"step": 5,"name": "Slide to increase the amount of countries: "}}],
-  "transform": [{"calculate": "toNumber(datum['BroadbandCostPerMonth_2024'])","as": "cost"},
-                {"window": [{"op": "rank","as": "rank"}],"sort": [{"field": "cost","order": "descending"}]},
-                {"filter": "datum.rank <= TopN"}],
-  "encoding": {"x": {"field": "country","type": "ordinal","sort": {"field": "cost","order": "descending"}},
-               "y": {"field": "cost","type": "quantitative","title": "USD per month (2024)"}},
-  "mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35},
+  "width": 1180,
+  "height": 320,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/internetcost.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "TopN",
+      "value": 30,
+      "bind": {
+        "input": "range",
+        "min": 5,
+        "max": 215,
+        "step": 5,
+        "name": "Number of countries: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "toNumber(datum['BroadbandCostPerMonth_2024'])", "as": "cost"},
+    {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "cost", "order": "descending"}]},
+    {"filter": "datum.rank <= TopN"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "sort": {"field": "cost", "order": "descending"},
+      "title": "Country"
+    },
+    "y": {
+      "field": "cost",
+      "type": "quantitative",
+      "title": "USD per month (2024)"
+    },
+    "tooltip": [
+      {"field": "country", "title": "Country:"},
+      {"field": "cost", "type": "quantitative", "format": ".2f", "title": "Monthly Cost (USD):"}
+    ]
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "line": {"color": "#1f77b4", "strokeWidth": 2},
+    "color": {"value": "#1f77b4"},
+    "opacity": 0.35
+  },
   "config": {"view": {"stroke": null}}
 };
 
+
 const specAreaMobile = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1200,"height": 320,
-  "data": {"url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/costofdata.csv","format": {"type": "csv"}},
-  "params": [{"name": "TopN","value": 30,"bind": {"input": "range","min": 5,"max": 155,"step": 5,"name": "Slide to increase the amount of countries: "}}],
-  "transform": [{"calculate": "toNumber(datum['Avg Price of 1GB'])","as": "value"},
-                {"window": [{"op": "rank","as": "rank"}],"sort": [{"field": "value","order": "descending"}]},
-                {"filter": "datum.rank <= TopN"}],
-  "encoding": {"x": {"field": "Country","type": "ordinal","sort": {"field": "value","order": "descending"}},
-               "y": {"field": "value","type": "quantitative","title": "USD per GB (2021)"}},
-  "mark": {"type": "area","interpolate": "monotone","line": {"color": "#1f77b4","strokeWidth": 2},"color": {"value": "#1f77b4"},"opacity": 0.35},
+  "width": 1180, "height": 320,
+  "data": {
+    "url": "https://raw.githubusercontent.com/willli3/FIT3179-Data-Visualisation/refs/heads/main/costofdata.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [{
+    "name": "TopN", "value": 30,
+    "bind": {"input": "range", "min": 5, "max": 155, "step": 5, "name": "Number of countries: "}
+  }],
+  "transform": [
+    {"calculate": "toNumber(datum['Avg Price of 1GB'])", "as": "value"},
+    {"window": [{"op": "rank", "as": "rank"}], "sort": [{"field": "value", "order": "descending"}]},
+    {"filter": "datum.rank <= TopN"}
+  ],
+  "encoding": {
+    "x": {"field": "Country", "type": "ordinal", "sort": {"field": "value", "order": "descending"}},
+    "y": {"field": "value", "type": "quantitative", "title": "USD per GB (2021)"},
+    "tooltip": [
+      {"field": "Country", "title": "Country:"},
+      {"field": "value", "type": "quantitative", "format": ".2f", "title": "Data Cost (USD per GB):"}
+    ]
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "line": {"color": "#1f77b4", "strokeWidth": 2},
+    "color": {"value": "#1f77b4"},
+    "opacity": 0.35
+  },
   "config": {"view": {"stroke": null}}
 };
+
 
 // --- Embed everything ---
 vegaEmbed("#map", specMap, opt);
